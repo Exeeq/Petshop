@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contenido %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Acerca de nosotros</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% static 'core/images/banner.jpg' %}">Home</a></li>
+                        <li class="breadcrumb-item active">NOSOTROS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <!-- End All Title Box -->
+
+    <!-- Start About Page  -->
+    <div class="about-box-main">
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-6">
+                    <div class="banner-frame"> <img class="img-fluid" src="{% static 'core/images/Tienda_nosotros.jpg' %}" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="noo-sh-title-top">Somos <span>Petshop</span></h2>
+                    <p>Somos una asosiacion benefica dirigida a la venta de articulos para animales sin fin de lucro, empezamos a vender de forma Online por nuestras redes cuando nuestros clientes empezaron a crecer, por lo tanto decidimos mudarnos a un sitio web donde podras recibir la misma atencion y la misma familiaridad tan propia de nuestra tienda.!</p>
+                    <p>Bienvenido a nuestra pagina de la tienda Petshop, aqui encontraras todos los articulos que necesites para tus animales.</p>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>Somos confiables</h3>
+                        <p>Llevamos mas de 2 años en este mercado de venta para articulos a animales a beneficio. </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>Somos profesionales.</h3>
+                        <p>Escucharemos todas las criticas o peticiones para poder mejorar. </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>Somos expertos</h3>
+                        <p>Gracias a nuestra experiencia en este ambito somos expertos en atencion y venta. </p>
+                    </div>
+                </div>
+            </div>
+            {% if user.is_authenticated and user.is_superuser %}
+            <a href="{% url 'addEmpleado' %}" title="AñadirEmpleado" class="btn hvr-hover text-light text-center  fa fa-plus"> Añadir Empleado</a>
+            {% endif %}
+            <div class="row my-4">
+                <br><br><br><br>
+                <div class="col-12">
+                    <h2 class="noo-sh-title">NUESTRO EQUIPO</h2>
+                </div>
+
+                {% for aux in listado2 %}
+                <div class="col-sm-6 col-lg-3">
+                    
+                    <div class="hover-team">
+                        {% if aux.imagen_empleado %}
+                        <div class="our-team"> <img src="{{ aux.imagen_empleado.url }}" alt="" />
+                        {% else %}
+                        <div class="our-team"> <img src="{% static 'core/images/danger.png' %}" alt="" />
+                        {% endif %}
+                            <div class="text-dark text-center">
+                                <h3 class="title">{{ aux.nombre_empleado }}</h3> <span class="post">{{ aux.cargo }}</span> </div>
+                            <ul class="social">
+                            {% if user.is_authenticated and user.is_superuser %}
+                                <li>
+                                    <a onclick="eliminarEmpleado({{ aux.id }}); return false;" href="" data-toggle="tooltip" data-placement="right" title="Eliminar Empleado"><i class="fa fa-trash"></i></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'updateEmpleado' aux.id %}" data-toggle="tooltip" data-placement="right" title="Actualizar Empleado" class="fas fa-sync-alt"></a>
+                                </li>
+                            {% endif %}
+                            </ul>
+                        </div>
+                        <hr class="my-0"> </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End About Page -->
+
+    <!-- Start Instagram Feed  -->
+
+    <!-- End Instagram Feed  -->
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'core/js/mensajes.js' %}"></script>
+
+{% endblock %}  
+
+  
