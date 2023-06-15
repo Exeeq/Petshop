@@ -43,13 +43,13 @@ def about(request):
     return render(request, 'core/about.html', data2)
 
 @login_required
-def carrito(request):
+def cart(request):
     carrito = ItemCarrito.objects.all()
 
     data3 = {
         'carrito': carrito,
     }
-    return render(request, 'core/carrito.html', data3)
+    return render(request, 'core/cart.html', data3)
 
 @login_required
 def checkout(request):
@@ -207,12 +207,12 @@ def agregar_al_carrito(request, producto_id):
     if not item_created:
         item.cantidad += 1
         item.save()
-    return render(request, 'core/carrito.html')
+    return render(request, 'core/cart.html')
 
 def eliminar_del_carrito(request, itemcarrito_id):
     item = get_object_or_404(ItemCarrito, pk=itemcarrito_id, carrito__usuario=request.user)
     item.delete()
-    return render(request, 'core/carrito.html')
+    return render(request, 'core/cart.html')
 
 def ver_carrito(request):
     # Obtén el carrito del usuario actual
@@ -226,6 +226,6 @@ def ver_carrito(request):
         'items': items,
     }
 
-    return render(request, 'carrito.html', context)
+    return render(request, 'cart.html', context)
 
 
