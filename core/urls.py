@@ -33,6 +33,11 @@ urlpatterns = [
     path('addEmpleado/', addEmpleado, name="addEmpleado"),
     path('updateEmpleado/<id>/', updateEmpleado, name="updateEmpleado"),
     path('deleteEmpleado/<id>/', deleteEmpleado, name="deleteEmpleado"),
+
+    #CRUD CARRITO
+    path('agregar/<producto_id>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('eliminar/<itemcarrito_id>/', eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('ver_carrito/', ver_carrito, name='ver_carrito'),
 ]	
 
 
