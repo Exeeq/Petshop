@@ -228,4 +228,14 @@ def ver_carrito(request):
 
     return render(request, 'cart.html', context)
 
+#REGISTRO DE USUARIOS
+def register(request):
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+             form.save()
+             return redirect("index")
+    return render(request, 'registration/register.html', { 'form': form })
+
 

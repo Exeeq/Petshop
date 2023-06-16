@@ -93,11 +93,14 @@ DATABASES = {
 DATABASES = {
     'default' : {
         'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : 'petshop2',
+        'NAME' : 'petshop_exe',
         'HOST' : 'localhost',
         'PORT' : '3306',
         'USER' : 'root',
         'PASSWORD' : '',
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',
+        },
     }
 }
 
@@ -125,9 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-cl"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Santiago"
 
 USE_I18N = True
 
