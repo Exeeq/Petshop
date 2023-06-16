@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 # CREAMOS UN TEMPLATE DE UN FORMULARIO EN BASE AL MODELO
 class ProductoForm(ModelForm):
@@ -27,3 +29,12 @@ class EmpleadoForm(ModelForm):
         model = Empleado
         fields = '__all__'
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=65)
+    password = forms.CharField(max_length=65, widget=forms.PasswordInput)
+
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields = ['username','email','password1','password2']
