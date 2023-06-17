@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from usuario.models import *
 
 # CREAMOS UN TEMPLATE DE UN FORMULARIO EN BASE AL MODELO
 class ProductoForm(ModelForm):
@@ -34,7 +35,7 @@ class LoginForm(forms.Form):
 
 class RegisterForm(UserCreationForm):
     class Meta:
-        model=User
+        model=UsuarioCustom
         fields = ['username','email','password1','password2']
 
 

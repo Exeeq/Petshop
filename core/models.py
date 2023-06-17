@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # Create your models here.
 
-# Create your models here.
 
 class TipoProducto(models.Model):
     descripcion = models.CharField(max_length=50)
@@ -34,7 +34,7 @@ class Empleado(models.Model):
         return self.nombre_empleado
 
 class Carrito(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     productos = models.ManyToManyField(Producto, through='ItemCarrito')
 
     def __str__(self):
@@ -47,3 +47,4 @@ class ItemCarrito(models.Model):
 
     def __str__(self):
         return self.producto.nombre, self.carrito.usuario.username
+
