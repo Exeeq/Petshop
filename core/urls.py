@@ -41,6 +41,7 @@ urlpatterns = [
 
     #REGISTRO DE USUARIOS
     path('register/', register, name="register"),
+    path('actualizar_suscriptor/', actualizar_suscriptor, name='actualizar_suscriptor')
 ]	
 
 

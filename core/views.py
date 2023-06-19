@@ -9,6 +9,8 @@ import time
 from rest_framework import viewsets
 from .serializers import *
 import requests
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # FUNCIÓN GENERICA QUE VALIDA EL GRUPO
 def grupo_requerido(nombre_grupo):
@@ -113,7 +115,14 @@ def mapa(request):
 def suscripcion(request):
     return render(request, 'core/suscripcion.html')
 
+@csrf_exempt
+def actualizar_suscriptor(request):
+    usuario_id = request.POST.get('usuario_id')  # Obtén el ID del usuario desde la solicitud POST
+    usuario = UsuarioCustom.objects.get(id=usuario_id)  # Obtén el usuario que deseas actualizar
+    usuario.suscriptor = True
+    usuario.save()
 
+    return HttpResponse('Campo suscriptor actualizado')
 #CRUD
 def add(request):
     data = {
