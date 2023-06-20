@@ -32,6 +32,22 @@ function eliminarEmpleado(id) {
   })
 }
 
+function eliminarProductoCarrito(id) {
+  Swal.fire({
+    title: '¿Desea eliminar esté Producto del carrito?',
+    icon: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire('Eliminado!','Empleado Eliminado Correctamente','success').then(function() {
+          window.location.href = "/eliminar_del_carrito/"+id+"/";
+      })
+    }
+  })
+}
 
 function mensaje(titulo,texto,icono) {
     Swal.fire({

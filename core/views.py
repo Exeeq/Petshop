@@ -216,7 +216,7 @@ def agregar_al_carrito(request, producto_id):
     if not item_created:
         item.cantidad += 1
         item.save()
-    return render(request, 'core/cart.html')
+    return redirect(to="shop")
 
 def eliminar_del_carrito(request, itemcarrito_id):
     item = get_object_or_404(ItemCarrito, pk=itemcarrito_id, carrito__usuario=request.user)

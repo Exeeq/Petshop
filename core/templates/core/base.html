@@ -113,6 +113,11 @@
                         {%  else %}
                         <li class="nav-item"><a class="nav-link" href=""></a></li>
                         {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                        {%  else %}
+                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        {% endif %}
 
                     </ul>
                 </div>

@@ -63,7 +63,7 @@
                                                             {% endif %}
                                                         </ul>
                                                         {% if aux.stock >= 1 %}
-                                                        <a class="cart" href="{% url 'cart' %}">AÑADIR AL CARRITO</a>
+                                                            <a class="cart"  href="{% url 'agregar_al_carrito' aux.id %}">Agregar al carrito</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
