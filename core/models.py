@@ -24,6 +24,9 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
+    def calcularDescuento(self):
+        return round(self.precio - (self.precio * 0.05))
+    
 class Empleado(models.Model):
     nombre_empleado = models.CharField(max_length=80)
     cargo = models.CharField(max_length=250)

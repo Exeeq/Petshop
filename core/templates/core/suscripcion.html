@@ -6,20 +6,28 @@
 {% endblock %} 
 
 {% block contenido %}
-<h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark"> SUSCRIPCIÓN </h1>
 <div class="container">
     <div class="row">
         <div class="col-12 m-5">
-            <form method="POST">
-                {% csrf_token %}
-                <input class="d-flex justify-content-center align-items-center" type="text" id="montoInput" value="{{ form.monto.value }}">
-                <div class="d-flex justify-content-center align-items-center">
+                <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1"> SUSCRIPCIÓN </h1>
+				<br>
+				<p class="text-center font-weight-bold text-dark h4">
+					Si te suscribes apoyarás a una fundación sin fines de lucro, ¡además recibiras un descuento de un 5% en todos
+					los productos para mascotas de la tienda!, todo eso por tan solo $10.000
+				</p>
+				<br><br>
+				{% if user.suscriptor %}
+				<a  onclick="eliminarSuscripcion(); return false;" type="submit" class="btn btn-primary btn-block text-light" value="DESUSCRIBIRME">DESUSCRIBIRME</a>
+				{% else %}
+				<div class="d-flex justify-content-center align-items-center">
                     <div id="btnPaypal"></div>
                 </div>
-            </form>
+				{% endif %}
+				<br><br><br><br><br>
         </div>
     </div>
 </div>
+
      
 
 {% endblock %}
@@ -30,6 +38,7 @@
 <script src="{% static 'core/js/funciones.js' %}"></script>
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	<script>
+
 		paypal.Button.render({
 			env: 'sandbox',
 			client: {
@@ -47,7 +56,7 @@
 				return actions.payment.create({
 					transactions: [{
 						amount: { 
-							total: document.getElementById('montoInput').value,
+							total: '1.00',
 							currency: 'USD'
 						}
 					}]
@@ -64,11 +73,21 @@
 						confirmButtonColor: '#3085d6',
 						cancelButtonColor: '#d33',
 						confirmButtonText: 'Confirmar'
-					})
-					// Llama a la función actualizarSuscriptor
-    				actualizarSuscriptor();
+					}).then((result) => {
+						if (result.isConfirmed) {
+							// Realizar una solicitud AJAX al servidor para actualizar el campo "suscritor"
+							var xhr = new XMLHttpRequest();
+							xhr.open('GET', '/actualizar_suscriptor/', true);  // Reemplaza la URL con la ruta correcta
+							xhr.setRequestHeader('Content-Type', 'application/json');
+							xhr.onload = function () {
+								if (xhr.status === 200) {
+									console.log(xhr.responseText);
+								}
+							};
+							xhr.send();
+						}
+					});
 				});
-
 			},
 			onCancel(data) {
 				Swal.fire({
@@ -94,6 +113,7 @@
 			}
 
 		}, '#btnPaypal');
+
 	</script>
     
 {% endblock %}

@@ -49,6 +49,24 @@ function eliminarProductoCarrito(id) {
   })
 }
 
+
+function eliminarSuscripcion() {
+  Swal.fire({
+    title: '¿Está seguro que desea desuscribirse?',
+    icon: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire('Listo!','Ya no eres suscritor','success').then(function() {
+          window.location.href = "/desuscribirse/";
+      })
+    }
+  })
+}
+
 function mensaje(titulo,texto,icono) {
     Swal.fire({
       title: titulo,
