@@ -42,6 +42,8 @@ class Carrito(models.Model):
 
     def __str__(self):
         return f"Carrito de {self.usuario.username}"
+    
+    
 
 class ItemCarrito(models.Model):
     carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
@@ -50,4 +52,4 @@ class ItemCarrito(models.Model):
 
     def __str__(self):
         return self.producto.nombre, self.carrito.usuario.username
-
+    

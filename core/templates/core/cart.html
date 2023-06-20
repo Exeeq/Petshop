@@ -33,13 +33,13 @@
                                   <a href="#">{{ aux.producto }}</a>
                               </td>
                               <td class="price-pr">
-                                  <p>$ {{ aux.producto.precio }}</p>
+                                  <p>${{ aux.producto.precio }}</p>
                               </td>
-                              <td class="quantity-box">
-                                <input type="number" size="4" value="{{ aux.cantidad }}" min="0" step="1" class="c-input-text qty text">
+                              <td class="quantity-box ">
+                                <p> {{ aux.cantidad }}</p>
                               </td>
                               <td class="total-pr">
-                                  <p>$ {{ aux.precio }}</p>
+                                  <p>{{ aux.cantidad }}</p>
                               </td>
                               <td class="remove-pr">
                                 <a onclick="eliminarProductoCarrito({{ aux.id }}); return false;" href="">

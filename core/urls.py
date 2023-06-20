@@ -17,7 +17,6 @@ urlpatterns = [
     path('cart/',cart, name="cart"),
     path('checkout/',checkout, name="checkout"),
     path('contact-us/',contact_us, name="contact-us"),
-	path('my-account/',my_account, name="my-account"),
     path('shop/',shop, name="shop"),
     path('shopapi/',shopapi, name="shopapi"),
     path('seguimiento/',seguimiento, name="seguimiento"),
@@ -45,6 +44,9 @@ urlpatterns = [
     #SUSCRIPCIÓN
     path('actualizar_suscriptor/', actualizar_suscriptor, name='actualizar_suscriptor'),
     path('desuscribirse/', desuscribirse, name='desuscribirse'),
+
+    #ADMIN
+    path('admin_vista/', admin, name="admin"),
 ]	
 
 

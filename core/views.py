@@ -51,6 +51,7 @@ def cart(request):
     data3 = {
         'carrito': carrito,
     }
+    
     return render(request, 'core/cart.html', data3)
 
 @login_required
@@ -61,9 +62,8 @@ def contact_us(request):
 	return render(request, 'core/contact-us.html')
 
 @login_required
-def my_account(request):
-	return render(request, 'core/my-account.html')
-
+def admin(request):
+	return render(request, 'core/admin_vista.html')
 
 @login_required
 def shop(request):

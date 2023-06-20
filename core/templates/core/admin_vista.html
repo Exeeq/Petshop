@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-5">
+            <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1"> PANEL DE ADMINISTRACIÓN </h1>
+			<br>
+            <div class="container">           
+                <table class="table table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                      <td>Mary</td>
+                      <td>Moe</td>
+                      <td>mary@example.com</td>
+                    </tr>
+                    <tr>
+                      <td>July</td>
+                      <td>Dooley</td>
+                      <td>july@example.com</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+        </div>
+    </div>
+</div>   
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    
+{% endblock %}
