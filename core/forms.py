@@ -15,7 +15,7 @@ class ProductoForm(ModelForm):
     class Meta:
         model = Producto
         fields = '__all__'
-
+    
         widgets = {
             'vencimiento' : forms.SelectDateWidget(years=range(1940,2061))
         }
