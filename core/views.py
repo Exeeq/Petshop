@@ -243,7 +243,7 @@ def ver_carrito(request):
         'items': items,
     }
 
-    return render(request, 'cart.html', context)
+    return render(request, 'core/cart.html', context)
 
 #REGISTRO DE USUARIOS
 def register(request):
