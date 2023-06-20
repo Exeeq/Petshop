@@ -67,15 +67,20 @@
                                                         {% endif %}
                                                     </div>
                                                 </div>
-                                                <div class="why-text">
+                                                <div class="why-text d-flex justify-content-between flex-column ">
                                                     <h4 class="text-dark text-center"> {{ aux.nombre }}</h4>
                                                     {% if aux.stock <= 0 %}
                                                     <h4 class="text-danger text-center">  ¡PRODUCTO SIN STOCK! </h4>
                                                     {% else %}
                                                     <h4 class="text-dark text-center"> STOCK: {{ aux.stock }}</h4>
                                                     {% endif %}
-                                                    <h3 class="text-dark d-flex text-center">{{ aux.descripcion }}</h3>
-                                                    <h5> ${{ aux.precio }} </h5>
+                                                    <h3 class="text-dark text-center">{{ aux.descripcion }}</h3>
+                                                    {% if user.suscriptor %}
+                                                    <h5 class="text-center"> ${{ aux.calcularDescuento }} </h5>
+                                                    <span class="text-muted font-italic text-center">$ {{ aux.precio }}</span>
+                                                    {% else %}
+                                                    <h5 class="text-center">${{ aux.precio }}</h5>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

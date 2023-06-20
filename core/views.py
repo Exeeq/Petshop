@@ -115,14 +115,22 @@ def mapa(request):
 def suscripcion(request):
     return render(request, 'core/suscripcion.html')
 
-@csrf_exempt
+@login_required
 def actualizar_suscriptor(request):
-    usuario_id = request.POST.get('usuario_id')  # Obtén el ID del usuario desde la solicitud POST
-    usuario = UsuarioCustom.objects.get(id=usuario_id)  # Obtén el usuario que deseas actualizar
+    usuario = request.user
     usuario.suscriptor = True
     usuario.save()
 
-    return HttpResponse('Campo suscriptor actualizado')
+    return render(request, 'core/suscripcion.html')
+
+@login_required
+def desuscribirse(request):
+    usuario = request.user
+    usuario.suscriptor = False
+    usuario.save()
+
+    return render(request, 'core/suscripcion.html')
+
 #CRUD
 def add(request):
     data = {
