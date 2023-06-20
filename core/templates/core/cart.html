@@ -11,7 +11,7 @@
                   <table class="table">
                       <thead>
                           <tr>
-                              <th>Imageness</th>
+                              <th>Imágen</th>
                               <th>Producto</th>
                               <th>Precio</th>
                               <th>Cantidad</th>
@@ -42,7 +42,7 @@
                                   <p>$ {{ aux.precio }}</p>
                               </td>
                               <td class="remove-pr">
-                                <a onclick="eliminarProductoCarrito({{ aux.producto.id }}); return false;" href="">
+                                <a onclick="eliminarProductoCarrito({{ aux.id }}); return false;" href="">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
@@ -53,26 +53,21 @@
               </div>
           </div>
       </div>
-
+      <br>
       <div class="row my-5">
           <div class="col-lg-6 col-sm-6">
               <div class="coupon-box">
                   <div class="input-group input-group-sm">
-                      <input class="form-control" placeholder="Ingresar cupón " aria-label="Coupon code" type="text">
-                      <div class="input-group-append">
-                          <button class="btn btn-theme" type="button">Aplicar cupón</button>
-                      </div>
                   </div>
               </div>
           </div>
           <div class="col-lg-6 col-sm-6">
               <div class="update-box">
-                <div class="col-12 d-flex shopping-box"> <a href="{% url 'shop' %}" class="ml-auto btn hvr-hover">COMPRAR MÁS PRODUCTOS</a> </div>>
+                <div class="col-12 d-flex shopping-box"> <a href="{% url 'shop' %}" class="ml-auto btn hvr-hover">COMPRAR MÁS PRODUCTOS</a> </div>
     
               </div>
           </div>
       </div>
-
       <div class="row my-5">
           <div class="col-lg-8 col-sm-12"></div>
           <div class="col-lg-4 col-sm-12">
@@ -116,7 +111,7 @@
   </div>
   
 </div>
-
+<br><br><br><br><br>
 <!-- End Cart -->
 
 
