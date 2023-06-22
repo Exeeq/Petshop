@@ -37,5 +37,3 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model=UsuarioCustom
         fields = ['username','email','password1','password2']
-
-
