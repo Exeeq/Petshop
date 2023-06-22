@@ -20,7 +20,6 @@
                           </tr>
                       </thead>
                       <tbody>
-<<<<<<< HEAD
                         {% if request.user.is_authenticated %}
                             {% for item in request.user.carrito.itemcarrito_set.all %}
                                 <tr>
@@ -51,36 +50,6 @@
                                 </tr>
                             {% endfor %}
                         {% endif %}
-=======
-                        {% for aux in carrito %}
-                          <tr>
-                                <td class="thumbnail-img">
-                                    {% if aux.producto.imagen %}
-                                        <img class="img-fluid" src="{{ aux.producto.imagen.url }}">
-                                    {% else %}
-                                        <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
-                                    {% endif %}
-                                </td>
-                              <td class="name-pr">
-                                  <a href="#">{{ aux.producto }}</a>
-                              </td>
-                              <td class="price-pr">
-                                  <p>${{ aux.producto.precio }}</p>
-                              </td>
-                              <td class="quantity-box ">
-                                <p> {{ aux.cantidad }}</p>
-                              </td>
-                              <td class="total-pr">
-                                  <p>{{ aux.cantidad }}</p>
-                              </td>
-                              <td class="remove-pr">
-                                <a onclick="eliminarProductoCarrito({{ aux.id }}); return false;" href="">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                          </tr>
-                        {% endfor %}
->>>>>>> 7fce454e2ae1e8604230caac62510133183da6f4
                       </tbody>
                   </table>
               </div>

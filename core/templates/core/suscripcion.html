@@ -13,9 +13,13 @@
 				<br>
 				<p class="text-center font-weight-bold text-dark h4">
 					Si te suscribes apoyarás a una fundación sin fines de lucro, ¡además recibiras un descuento de un 5% en todos
-					los productos para mascotas de la tienda!, todo eso por tan solo $10.000
+					los productos para mascotas de la tienda!, todo eso por solo una donación a la tienda a voluntad.
 				</p>
-				<br><br>
+				<br>
+				<div class="text-center">
+					$  <input class="text-center" type="text" name="monto" id="montoInput" placeholder="Ingrese el monto" min="0">
+				</div>
+				<br>
 				{% if user.suscriptor %}
 				<a  onclick="eliminarSuscripcion(); return false;" type="submit" class="btn btn-primary btn-block text-light" value="DESUSCRIBIRME">DESUSCRIBIRME</a>
 				{% else %}
@@ -53,10 +57,11 @@
 			},
 			commit: true,
 			payment: function (data, actions) {
+				var monto = document.getElementById('montoInput').value;
 				return actions.payment.create({
 					transactions: [{
 						amount: { 
-							total: '1.00',
+							total: monto,
 							currency: 'USD'
 						}
 					}]
