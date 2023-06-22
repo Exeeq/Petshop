@@ -20,34 +20,36 @@
                           </tr>
                       </thead>
                       <tbody>
-                        {% for aux in carrito %}
-                          <tr>
-                                <td class="thumbnail-img">
-                                    {% if aux.producto.imagen %}
-                                        <img class="img-fluid" src="{{ aux.producto.imagen.url }}">
-                                    {% else %}
-                                        <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
-                                    {% endif %}
-                                </td>
-                              <td class="name-pr">
-                                  <a href="#">{{ aux.producto }}</a>
-                              </td>
-                              <td class="price-pr">
-                                  <p>$ {{ aux.producto.precio }}</p>
-                              </td>
-                              <td class="quantity-box">
-                                <input type="number" size="4" value="{{ aux.cantidad }}" min="0" step="1" class="c-input-text qty text">
-                              </td>
-                              <td class="total-pr">
-                                  <p>$ {{ aux.precio }}</p>
-                              </td>
-                              <td class="remove-pr">
-                                <a onclick="eliminarProductoCarrito({{ aux.producto.id }}); return false;" href="">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                          </tr>
-                        {% endfor %}
+                        {% if request.user.is_authenticated %}
+                            {% for item in request.user.carrito.itemcarrito_set.all %}
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        {% if item.producto.imagen %}
+                                            <img class="img-fluid" src="{{ item.producto.imagen.url }}">
+                                        {% else %}
+                                            <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
+                                        {% endif %}
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">{{ item.producto.nombre }}</a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>$ {{ item.producto.precio }}</p>
+                                    </td>
+                                    <td class="quantity-box">
+                                        <input type="number" size="4" value="{{ item.cantidad }}" min="0" step="1" class="c-input-text qty text">
+                                    </td>
+                                    <td class="total-pr">
+                                        <p>$ {{ item.producto.precio }}</p>
+                                    </td>
+                                    <td class="remove-pr">
+                                        <a onclick="eliminarProductoCarrito({{ item.id }}); return false;" href="">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                       </tbody>
                   </table>
               </div>
