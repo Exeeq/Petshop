@@ -46,6 +46,7 @@ urlpatterns = [
 
     #ADMIN
     path('admin_vista/', admin, name="admin"),
+
 ]	
 
 
