@@ -26,6 +26,10 @@ class Producto(models.Model):
     
     def calcularDescuento(self):
         return round(self.precio - (self.precio * 0.05))
+
+    def disminuir_stock(self, cantidad):
+        self.stock -= cantidad
+        self.save()
     
 class Empleado(models.Model):
     nombre_empleado = models.CharField(max_length=80)

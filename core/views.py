@@ -224,26 +224,16 @@ def agregar_al_carrito(request, producto_id):
     if not item_created:
         item.cantidad += 1
         item.save()
+
+    producto.disminuir_stock(1)
+
     return redirect(to="shop")
 
 def eliminar_del_carrito(request, itemcarrito_id):
     item = get_object_or_404(ItemCarrito, pk=itemcarrito_id, carrito__usuario=request.user)
     item.delete()
-    return render(request, 'core/cart.html')
-
-def ver_carrito(request):
-    # Obtén el carrito del usuario actual
-    carrito = Carrito.objects.get(usuario=request.user)
     
-    # Obtén los items del carrito
-    items = carrito.items.all()
-
-    context = {
-        'carrito': carrito,
-        'items': items,
-    }
-
-    return render(request, 'core/cart.html', context)
+    return render(request, 'core/cart.html')
 
 #REGISTRO DE USUARIOS
 def register(request):
