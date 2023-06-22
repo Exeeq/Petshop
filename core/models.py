@@ -60,5 +60,11 @@ class ItemCarrito(models.Model):
     def precio_total(self):
         return self.cantidad * self.producto.precio
     
+    def calcularDescuentoCarrito(self):
+        return round(self.producto.precio - (self.producto.precio * 0.05))
+    
+    def precio_total_suscritor(self):
+        return round(self.producto.precio - (self.producto.precio * 0.05)) * self.cantidad
+    
 
     
