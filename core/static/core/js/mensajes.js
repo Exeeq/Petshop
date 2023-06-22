@@ -49,7 +49,6 @@ function eliminarProductoCarrito(id) {
   })
 }
 
-
 function eliminarSuscripcion() {
   Swal.fire({
     title: '¿Está seguro que desea desuscribirse?',

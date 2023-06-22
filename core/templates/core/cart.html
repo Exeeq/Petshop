@@ -11,7 +11,7 @@
                   <table class="table">
                       <thead>
                           <tr>
-                              <th>Imageness</th>
+                              <th>Imágen</th>
                               <th>Producto</th>
                               <th>Precio</th>
                               <th>Cantidad</th>
@@ -20,6 +20,7 @@
                           </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
                         {% if request.user.is_authenticated %}
                             {% for item in request.user.carrito.itemcarrito_set.all %}
                                 <tr>
@@ -50,31 +51,56 @@
                                 </tr>
                             {% endfor %}
                         {% endif %}
+=======
+                        {% for aux in carrito %}
+                          <tr>
+                                <td class="thumbnail-img">
+                                    {% if aux.producto.imagen %}
+                                        <img class="img-fluid" src="{{ aux.producto.imagen.url }}">
+                                    {% else %}
+                                        <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
+                                    {% endif %}
+                                </td>
+                              <td class="name-pr">
+                                  <a href="#">{{ aux.producto }}</a>
+                              </td>
+                              <td class="price-pr">
+                                  <p>${{ aux.producto.precio }}</p>
+                              </td>
+                              <td class="quantity-box ">
+                                <p> {{ aux.cantidad }}</p>
+                              </td>
+                              <td class="total-pr">
+                                  <p>{{ aux.cantidad }}</p>
+                              </td>
+                              <td class="remove-pr">
+                                <a onclick="eliminarProductoCarrito({{ aux.id }}); return false;" href="">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+>>>>>>> 7fce454e2ae1e8604230caac62510133183da6f4
                       </tbody>
                   </table>
               </div>
           </div>
       </div>
-
+      <br>
       <div class="row my-5">
           <div class="col-lg-6 col-sm-6">
               <div class="coupon-box">
                   <div class="input-group input-group-sm">
-                      <input class="form-control" placeholder="Ingresar cupón " aria-label="Coupon code" type="text">
-                      <div class="input-group-append">
-                          <button class="btn btn-theme" type="button">Aplicar cupón</button>
-                      </div>
                   </div>
               </div>
           </div>
           <div class="col-lg-6 col-sm-6">
               <div class="update-box">
-                <div class="col-12 d-flex shopping-box"> <a href="{% url 'shop' %}" class="ml-auto btn hvr-hover">COMPRAR MÁS PRODUCTOS</a> </div>>
+                <div class="col-12 d-flex shopping-box"> <a href="{% url 'shop' %}" class="ml-auto btn hvr-hover">COMPRAR MÁS PRODUCTOS</a> </div>
     
               </div>
           </div>
       </div>
-
       <div class="row my-5">
           <div class="col-lg-8 col-sm-12"></div>
           <div class="col-lg-4 col-sm-12">
@@ -118,7 +144,7 @@
   </div>
   
 </div>
-
+<br><br><br><br><br>
 <!-- End Cart -->
 
 
