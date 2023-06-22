@@ -36,11 +36,11 @@
                                     <td class="price-pr">
                                         <p>$ {{ item.producto.precio }}</p>
                                     </td>
-                                    <td class="quantity-box">
-                                        <input type="number" size="4" value="{{ item.cantidad }}" min="0" step="1" class="c-input-text qty text">
+                                    <td class="price-pr">
+                                        <p>{{ item.cantidad }}</p>
                                     </td>
                                     <td class="total-pr">
-                                        <p>$ {{ item.producto.precio }}</p>
+                                        <p>$ {{ item.precio_total }}</p>
                                     </td>
                                     <td class="remove-pr">
                                         <a onclick="eliminarProductoCarrito({{ item.id }}); return false;" href="">
@@ -98,8 +98,8 @@
                   </div>
                   <hr>
                   <div class="d-flex gr-total">
-                      <h5>Total </h5>
-                      <div class="ml-auto h5"> $ {{ valor }} </div>
+                      <h5> Total </h5>
+                      <div class="ml-auto h5"> $ {{ item.precio_total }} </div>
                   </div>
                   <hr>
           </div>

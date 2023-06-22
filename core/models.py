@@ -43,6 +43,10 @@ class Carrito(models.Model):
     def __str__(self):
         return f"Carrito de {self.usuario.username}"
     
+    def calcular_precio_total(self):
+        items = self.itemcarrito_set.all()
+        precio_total = sum(item.cantidad * item.producto.precio for item in items)
+        return precio_total
     
 
 class ItemCarrito(models.Model):
@@ -51,5 +55,10 @@ class ItemCarrito(models.Model):
     cantidad = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return self.producto.nombre, self.carrito.usuario.username
+        return f"{self.producto.nombre} - {self.carrito.usuario.username}"
+
+    def precio_total(self):
+        return self.cantidad * self.producto.precio
+    
+
     
