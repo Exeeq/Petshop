@@ -18,12 +18,21 @@
                           <thead>
                           </thead>
                           <tbody>
+                            {% if user.is_staff %}
                             <tr>
-                              <td>Solicitud ingresada</td>
-                              <td class="table-dark">Preparando producto</td>
-                              <td class="table-dark">En ruta</td>
-                              <td class="table-dark">Entregado</td>
+                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
+                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
+                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
+                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
                             </tr>
+                          {% else %}
+                          <tr class="h4">
+                            <td class="table-dark">SOLICITUD INGRESADA</td>
+                            <td class="table-dark">PREPARANDO PRODUCTO</td>
+                            <td class="table-dark">EN RUTA</td>
+                            <td class="table-dark">ENTREGADO</td>
+                          </tr>
+                          {% endif %}
                           </tbody>
                         </table>
                       </div>
@@ -46,4 +55,9 @@
 </div>
 
 
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'core/js/mensajes.js' %}"></script>
 {% endblock %}

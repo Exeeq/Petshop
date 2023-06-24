@@ -80,13 +80,15 @@
           <div class="col-lg-6 col-sm-6">
               <div class="update-box">
                 <div class="col-12 d-flex shopping-box "> <a href="{% url 'shop' %}" class="ml-auto btn hvr-hover">COMPRAR MÁS PRODUCTOS</a> </div>
-    
               </div>
           </div>
       </div>
       <br><br>
           <div class="d-flex">
             <div class="ml-auto font-weight-bold "> 
+                <tr>
+                    <p class="text-center bg-success">PRECIO TOTAL: ${{ precio_total }}</p>
+                </tr>
                 <div id="btnPaypal"></div>
              </div>
         </div>
