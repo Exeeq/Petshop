@@ -51,16 +51,25 @@ def cart(request):
     carrito = Carrito.objects.get(usuario=usuario)
     items = carrito.itemcarrito_set.all()
     precio_total = 0
+    precio_total_dolares = 0
+    respuesta = requests.get('https://mindicador.cl/api/')
+
+    
+    monedas = respuesta.json()
+    tasa_dolar = monedas['dolar']['valor']
 
     for item in items:
         if usuario.suscriptor:
             precio_total += item.precio_total_suscritor()
+            precio_total_dolares = round(precio_total / tasa_dolar, 2)
         else:
             precio_total += item.precio_total()
+            precio_total_dolares = round(precio_total / tasa_dolar, 2)
 
     data3 = {
         'carrito': carrito,
         'precio_total': precio_total,
+        'precio_total_dolares': precio_total_dolares
     }
     
     return render(request, 'core/cart.html', data3)

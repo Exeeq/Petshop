@@ -66,6 +66,11 @@
                         {% endif %}
                       </tbody>
                   </table>
+                  <div class="col-lg-6 col-sm-6 mx-auto text-center">
+                    <div class="update-box ">
+                    <div class="col-12 shopping-box "> <p class=" hvr-hover text-light h3">SALDO TOTAL A PAGAR: $ {{ precio_total }}</p>  </div>
+                    </div>
+                </div>
               </div>
           </div>
       </div>
@@ -86,9 +91,6 @@
       <br><br>
           <div class="d-flex">
             <div class="ml-auto font-weight-bold "> 
-                <tr>
-                    <p class="text-center bg-success">PRECIO TOTAL: ${{ precio_total }}</p>
-                </tr>
                 <div id="btnPaypal"></div>
              </div>
         </div>
@@ -124,7 +126,7 @@
 				return actions.payment.create({
 					transactions: [{
 						amount: { 
-							total: '10.00', // EL TOTAL DEL CARRITO DE COMPRA
+							total: '{{ precio_total_dolares }}', // EL TOTAL DEL CARRITO DE COMPRA
 							currency: 'USD'
 						}
 					}]
@@ -170,4 +172,3 @@
 		}, '#btnPaypal');
 	</script>
 {% endblock %}
-
