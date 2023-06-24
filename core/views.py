@@ -12,6 +12,7 @@ import requests
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+
 # FUNCIÓN GENERICA QUE VALIDA EL GRUPO
 def grupo_requerido(nombre_grupo):
      def decorator(view_func):
@@ -47,7 +48,7 @@ def about(request):
 @login_required
 def cart(request):
     carrito = ItemCarrito.objects.all()
-
+  
     data3 = {
         'carrito': carrito,
     }
@@ -231,8 +232,19 @@ def agregar_al_carrito(request, producto_id):
 
 def eliminar_del_carrito(request, itemcarrito_id):
     item = get_object_or_404(ItemCarrito, pk=itemcarrito_id, carrito__usuario=request.user)
+
+    # Obtener el producto asociado al ítem eliminado
+    producto = item.producto
+
+    # Incrementar la cantidad disponible en el stock del producto
+    producto.stock += item.cantidad
+
+    # Guardar los cambios en el producto
+    producto.save()
+
+    # Eliminar el ítem del carrito
     item.delete()
-    
+
     return render(request, 'core/cart.html')
 
 #REGISTRO DE USUARIOS
