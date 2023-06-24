@@ -66,6 +66,19 @@ function eliminarSuscripcion() {
   })
 }
 
+function highlightRow(button) {
+  // Obtén la fila padre del botón seleccionado
+  var row = button.parentNode.parentNode;
+
+  // Agrega o elimina la clase CSS 'highlight-row' para cambiar el color de fondo
+  if (row.classList.contains('highlight-row')) {
+    row.classList.remove('highlight-row');
+  } else {
+    row.classList.add('highlight-row');
+  }
+}
+
+
 function mensaje(titulo,texto,icono) {
     Swal.fire({
       title: titulo,

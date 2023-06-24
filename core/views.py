@@ -47,10 +47,20 @@ def about(request):
 
 @login_required
 def cart(request):
-    carrito = ItemCarrito.objects.all()
-  
+    usuario = request.user
+    carrito = Carrito.objects.get(usuario=usuario)
+    items = carrito.itemcarrito_set.all()
+    precio_total = 0
+
+    for item in items:
+        if usuario.suscriptor:
+            precio_total += item.precio_total_suscritor()
+        else:
+            precio_total += item.precio_total()
+
     data3 = {
         'carrito': carrito,
+        'precio_total': precio_total,
     }
     
     return render(request, 'core/cart.html', data3)

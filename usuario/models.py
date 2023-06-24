@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class UsuarioCustom(AbstractUser):
     suscriptor = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.username
