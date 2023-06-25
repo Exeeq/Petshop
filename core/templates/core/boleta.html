@@ -3,12 +3,20 @@
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-<h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark"> SU PAGO FUE COMPLEDO! </h1>
+
 <div class="container">
     <div class="row">
         <div class="col-12 m-5">
             <form method="POST">
-                <h3>{{orden.numero}}</h3>
+                <br>
+                <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark text-center h1"> ¡SU PAGO FUE COMPLETADO! </h1>
+                <br><br>
+                <h3 class="text-center font-weight-bold text-dark h4 text-uppercase">ORDEN DE:  {{ orden.carrito.usuario }}</h3>
+                <h3 class="text-center font-weight-bold text-dark h4">SU NUMERO DE ORDEN ES:  {{ orden.numero }}</h3>
+                <h3 class="text-center font-weight-bold text-dark h4">FECHA DE LA ORDEN:  {{ orden.fecha }}</h3>
+                
+
+
             </form>
         </div>
     </div>
