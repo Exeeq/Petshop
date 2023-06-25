@@ -17,14 +17,9 @@
                           <thead>
                           </thead>
                           <tbody>
-                            {% if orden %}
+                          {% if orden %}
                             <h3>NÚMERO DE ORDEN: {{ orden.numero }}</h3>
-                          <tr class="h4">
-                            <td class="table-dark">SOLICITUD INGRESADA</td>
-                            <td class="table-dark">PREPARANDO PRODUCTO</td>
-                            <td class="table-dark">EN RUTA</td>
-                            <td class="table-dark">ENTREGADO</td>
-                          </tr>
+                            <h3>NÚMERO DE ORDEN: {{ orden.estado }}</h3>
                           {% endif %}
                           </tbody>
                         </table>

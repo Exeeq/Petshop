@@ -94,7 +94,24 @@ def contact_us(request):
 
 @login_required
 def admin(request):
-	return render(request, 'core/admin_vista.html')
+    ordenes = Orden.objects.all()
+    form = EstadoOrden()
+
+    if request.method == 'POST':
+        form = EstadoOrden(request.POST)
+        if form.is_valid():
+            orden_numero = form.cleaned_data['orden_numero']
+            estado = form.cleaned_data['estado']
+            orden = Orden.objects.get(numero=orden_numero)
+            orden.estado = estado
+            orden.save()
+
+    data = {
+        'ordenes': ordenes,
+        'form': form,
+    }
+
+    return render(request, 'core/admin_vista.html', data)
 
 @login_required
 def shop(request):
@@ -155,12 +172,42 @@ def seguimiento(request):
     return render(request, 'core/seguimiento.html', data1)
 
 @login_required
-def mapa(request):
-	return render(request, 'core/mapa.html')
+def mapa(request, numero_orden):
+    orden = Orden.objects.get(numero=numero_orden)
+    return render(request, 'mapa.html', {'numero_orden': orden})
 
 @login_required
 def suscripcion(request):
     return render(request, 'core/suscripcion.html')
+
+@login_required
+def historial_compras(request):
+    usuario = request.user
+    ordenes = Orden.objects.filter(carrito__usuario=usuario)
+    carrito = Carrito.objects.get(usuario=usuario)
+    items = carrito.itemcarrito_set.all()
+    precio_total = 0
+    precio_total_dolares = 0
+    respuesta = requests.get('https://mindicador.cl/api/')
+
+    
+    monedas = respuesta.json()
+    tasa_dolar = monedas['dolar']['valor']
+
+    for item in items:
+        if usuario.suscriptor:
+            precio_total += item.precio_total_suscritor()
+            precio_total_dolares = round(precio_total / tasa_dolar, 2)
+        else:
+            precio_total += item.precio_total()
+            precio_total_dolares = round(precio_total / tasa_dolar, 2)
+    
+    data = {
+        'historial': ordenes,
+        'precio_total': precio_total,
+    }
+
+    return render(request, 'core/historial_compras.html', data)
 
 def boleta(request, numero_orden):
     usuario = request.user
@@ -337,4 +384,21 @@ def crear_orden(request):
     else:
         return JsonResponse({'success': False})
 
+
+def cambiar_estado(request, numero_orden):
+    orden = Orden.objects.get(numero=numero_orden)
+    form = EstadoOrden(request.POST or None, initial={'estado': orden.estado})
+
+    if request.method == 'POST' and form.is_valid():
+        seguimiento = Seguimiento.objects.create(descripcion=form.cleaned_data['estado'])
+        orden.estado = seguimiento
+        orden.save()
+        # Realizar cualquier acción adicional después de actualizar el estado
+
+    data = {
+        'ordenes': Orden.objects.all(),
+        'form': form,
+    }
+
+    return render(request, 'core/admin_vista.html', data)
 
