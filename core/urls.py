@@ -22,8 +22,9 @@ urlpatterns = [
     path('shop/',shop, name="shop"),
     path('shopapi/',shopapi, name="shopapi"),
     path('seguimiento/',seguimiento, name="seguimiento"),
-    path('mapa/',mapa, name="mapa"),
+    path('mapa/', mapa, name='mapa'),
     path('suscripcion/', suscripcion, name="suscripcion"),
+    path('historial_compras/', historial_compras, name="historial_compras"),
 
    #CRUD SHOP
     path('add/', add, name="add"),
@@ -52,6 +53,8 @@ urlpatterns = [
     #ORDEN
     path('crear_orden/', crear_orden, name='crear_orden'),
     path('boleta/<numero_orden>', boleta, name='boleta'),
+    path('cambiar_estado/<str:numero_orden>/', cambiar_estado, name='cambiar_estado'),
+    
 
 ]	
 

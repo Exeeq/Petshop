@@ -22,7 +22,7 @@
                       </thead>
                       <tbody>
                         {% if request.user.is_authenticated %}
-                            {% for item in request.user.carrito.itemcarrito_set.all %}
+                            {% for item in carrito.itemcarrito_set.all %}
                                 <tr>
                                     <td class="thumbnail-img">
                                         {% if item.producto.imagen %}

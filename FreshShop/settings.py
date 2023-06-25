@@ -87,7 +87,7 @@ WSGI_APPLICATION = "FreshShop.wsgi.application"
 DATABASES = {
     'default' : {
         'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : 'petshop_exe1',
+        'NAME' : 'petshop_exe2',
         'HOST' : 'localhost',
         'PORT' : '3306',
         'USER' : 'root',

@@ -11,40 +11,34 @@
             <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1"> PANEL DE ADMINISTRACIÓN DE PEDIDOS</h1>
 			<br>
             <div class="container">           
-                <table class="table table-dark table-hover">
-                  <thead>
+              <table class="table table-dark table-hover">
+                <thead>
                     <tr>
-                      <th>Estado</th>
-                      <th>ID de pedido</th>
-                      <th>A nombre de</th>
-                      <th>E-mail del cliente</th>
-                      <th></th>
+                        <th>Estado</th>
+                        <th>Número de Orden</th>
+                        <th>Nombre</th>
+                        <th>E-mail del cliente</th>
+                        <th>Actualizar Estado</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
+                    {% for orden in ordenes %}
                     <tr>
-                      <td>Entregado</td>
-                      <td>37737235</td>
-                      <td>Gabriel Jesus</td>
-                      <td>grajesu@gmail.com</td>
-                      <td><a type="submit" href="" class="btn btn-success ">Cambiar estado</a></td>
+                        <td>{{ orden.estado }}</td>
+                        <td>{{ orden.numero }}</td>
+                        <td class="text-uppercase">{{ orden.carrito.usuario }}</td>
+                        <td class="text-uppercase">{{ orden.carrito.usuario.email }}</td>
+                        <td>
+                            <form method="post" action="{% url 'cambiar_estado' orden.numero %}">
+                                {% csrf_token %}
+                                {{ form.estado }}
+                                <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+                            </form>
+                        </td>
                     </tr>
-                    <tr>
-                      <td>En preparacion</td>
-                      <td>357357</td>
-                      <td>Jack Grealish</td>
-                      <td>jagrea@gmail.com</td>
-                      <td><a type="submit" href="" class="btn btn-success ">Cambiar estado</a></td>
-                    </tr>
-                    <tr>
-                      <td>Cancelado</td>
-                      <td>7245735</td>
-                      <td>Vinicius Junior</td>
-                      <td>vinju@gmail.com</td>
-                      <td><a type="submit" href="" class="btn btn-success ">Cambiar estado</a></td>
-                    </tr>
-                  </tbody>
-                </table>
+                    {% endfor %}
+                </tbody>
+            </table>
               </div>
               
         </div>

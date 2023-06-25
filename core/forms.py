@@ -42,3 +42,14 @@ class SeguimientoForm(forms.Form):
     numero_orden = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"placeholder":"INGRESE NÚMERO DE ORDEN"}))
     numero_orden.widget.attrs['class'] = 'text-center'
     numero_orden.label = ''
+
+ESTADOS_ORDEN = [
+    ('SOLICITUD INGRESADA', 'SOLICITUD INGRESADA'),
+    ('EN PREPARACIÓN', 'EN PREPARACIÓN'),
+    ('EN RUTA', 'EN RUTA'),
+    ('ENTREGADO', 'ENTREGADO'),
+    ]
+
+class EstadoOrden(forms.Form):
+    estado = forms.ChoiceField(label='Estado', choices=ESTADOS_ORDEN)
+

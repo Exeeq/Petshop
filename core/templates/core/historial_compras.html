@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-5">
+            <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark h1"> HISTORIAL DE COMPRAS </h1>
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <br>
+                        <th>NÚMERO DE LA ORDEN</th>
+                        <th>PRECIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compras in historial %}
+                    <tr>
+                        <td>{{ compras.numero }}</td>
+                        <td></td>
+                        <td>a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js%}
+    
+{% endblock %}
