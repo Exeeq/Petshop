@@ -12,20 +12,13 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <form>
-                    
                     <div class="container mt-3">        
                         <table class="table table-success">
                           <thead>
                           </thead>
                           <tbody>
-                            {% if user.is_staff %}
-                            <tr>
-                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
-                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
-                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
-                              <td><a type="submit" href="" class="btn btn-success" onclick="highlightRow(this)">Cambiar estado</a></td>
-                            </tr>
-                          {% else %}
+                            {% if orden %}
+                            <h3>NÚMERO DE ORDEN: {{ orden.numero }}</h3>
                           <tr class="h4">
                             <td class="table-dark">SOLICITUD INGRESADA</td>
                             <td class="table-dark">PREPARANDO PRODUCTO</td>

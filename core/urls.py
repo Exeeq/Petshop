@@ -6,6 +6,8 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('productos', ProductoViewset)
 router.register('tipoproductos', TipoProductoViewset)
+router.register('empleado', EmpleadoViewset)
+router.register('carrito', CarritoViewset)
 
 
 urlpatterns = [
@@ -46,6 +48,10 @@ urlpatterns = [
 
     #ADMIN
     path('admin_vista/', admin, name="admin"),
+
+    #ORDEN
+    path('crear_orden/', crear_orden, name='crear_orden'),
+    path('boleta/<numero_orden>', boleta, name='boleta'),
 
 ]	
 
