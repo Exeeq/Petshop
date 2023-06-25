@@ -163,10 +163,15 @@ def suscripcion(request):
     return render(request, 'core/suscripcion.html')
 
 def boleta(request, numero_orden):
+    usuario = request.user
     orden = Orden.objects.get(numero = numero_orden)
+    carrito = Carrito.objects.get(usuario=usuario)
+    items = carrito.itemcarrito_set.all()
 
     data = {
-         'orden': orden
+         'orden': orden,
+         'carrito': carrito,
+         'items': items,
     }
 
     return render(request, 'core/boleta.html', data)

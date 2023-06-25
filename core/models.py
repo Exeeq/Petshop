@@ -46,7 +46,7 @@ class Carrito(models.Model):
     productos = models.ManyToManyField(Producto, through='ItemCarrito')
 
     def __str__(self):
-        return f"Carrito de {self.usuario.username}"
+        return f"{self.usuario.username}"
     
     
 class ItemCarrito(models.Model):
@@ -70,6 +70,7 @@ class Orden(models.Model):
     carrito = models.OneToOneField(Carrito, on_delete=models.CASCADE)
     numero = models.CharField(max_length=36, unique=True, default=uuid.uuid4)
     fecha = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return f"Orden #{self.numero}"
