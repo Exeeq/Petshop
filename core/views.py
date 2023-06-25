@@ -11,6 +11,9 @@ from .serializers import *
 import requests
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import uuid
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # FUNCIÓN GENERICA QUE VALIDA EL GRUPO
@@ -31,6 +34,14 @@ class TipoProductoViewset(viewsets.ModelViewSet):
      queryset = TipoProducto.objects.all()
      serializer_class = TipoProductoSerializers
 
+
+class EmpleadoViewset(viewsets.ModelViewSet):
+     queryset = Empleado.objects.all()
+     serializer_class = EmpleadoSerializers
+
+class CarritoViewset(viewsets.ModelViewSet):
+     queryset = Carrito.objects.all()
+     serializer_class = CarritoSerializers
 
 def index(request):
 	return render(request, 'core/index.html')
@@ -125,7 +136,23 @@ def shopapi(request):
 #@grupo_requerido('vendedor')
 @login_required
 def seguimiento(request):
-	return render(request, 'core/seguimiento.html')
+    form = SeguimientoForm()
+    data1 = {
+        'form': form
+    }
+    if request.method == 'POST':
+        form = SeguimientoForm(request.POST)
+        if form.is_valid():
+            numero_orden = form.cleaned_data['numero_orden']
+            try:
+                orden = Orden.objects.get(numero=numero_orden)
+                data1['orden'] = orden
+                print(orden.numero)
+                return render(request, 'core/mapa.html', data1)
+            except ObjectDoesNotExist:
+                messages.error(request, "¡EL NÚMERO DE ORDEN NO EXISTE!")
+
+    return render(request, 'core/seguimiento.html', data1)
 
 @login_required
 def mapa(request):
@@ -134,6 +161,15 @@ def mapa(request):
 @login_required
 def suscripcion(request):
     return render(request, 'core/suscripcion.html')
+
+def boleta(request, numero_orden):
+    orden = Orden.objects.get(numero = numero_orden)
+
+    data = {
+         'orden': orden
+    }
+
+    return render(request, 'core/boleta.html', data)
 
 @login_required
 def actualizar_suscriptor(request):
@@ -275,5 +311,25 @@ def register(request):
              form.save()
              return redirect("index")
     return render(request, 'registration/register.html', { 'form': form })
+
+#ORDEN DE COMPRA
+
+def crear_orden(request):
+    if request.method == 'POST':
+        usuario = request.user
+        carrito = usuario.carrito
+
+        # Crear la instancia de la orden
+        orden = Orden.objects.create(carrito=carrito, numero=str(uuid.uuid4()))
+
+
+
+        # Limpiar el carrito
+        carrito.productos.clear()
+
+        # Devolver una respuesta JSON indicando el éxito de la creación de la orden
+        return JsonResponse({'success': True, 'numero_orden': orden.numero})
+    else:
+        return JsonResponse({'success': False})
 
 

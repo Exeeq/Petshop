@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+import uuid
 
 
 # Create your models here.
@@ -65,5 +66,17 @@ class ItemCarrito(models.Model):
     def precio_total_suscritor(self):
         return round(self.producto.precio - (self.producto.precio * 0.05)) * self.cantidad
     
+class Orden(models.Model):
+    carrito = models.OneToOneField(Carrito, on_delete=models.CASCADE)
+    numero = models.CharField(max_length=36, unique=True, default=uuid.uuid4)
+    fecha = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Orden #{self.numero}"
+    
+class Seguimiento(models.Model):
+    descripcion = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.descripcion
     

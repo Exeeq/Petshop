@@ -17,6 +17,7 @@ admin.site.register(Producto,ProductoAdmin)
 admin.site.register(Empleado)
 admin.site.register(Carrito)
 admin.site.register(ItemCarrito)
-
+admin.site.register(Orden)
+admin.site.register(Seguimiento)
 
 

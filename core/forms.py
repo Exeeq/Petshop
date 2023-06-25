@@ -17,7 +17,7 @@ class ProductoForm(ModelForm):
         fields = '__all__'
     
         widgets = {
-            'vencimiento' : forms.SelectDateWidget(years=range(1940,2061))
+            'vencimiento' : forms.SelectDateWidget(years=range(2023,2061))
         }
 
 class EmpleadoForm(ModelForm):
@@ -37,3 +37,8 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model=UsuarioCustom
         fields = ['username','email','password1','password2']
+
+class SeguimientoForm(forms.Form):
+    numero_orden = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"placeholder":"INGRESE NÚMERO DE ORDEN"}))
+    numero_orden.widget.attrs['class'] = 'text-center'
+    numero_orden.label = ''
