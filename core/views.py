@@ -342,7 +342,7 @@ def eliminar_del_carrito(request, itemcarrito_id):
     # Eliminar el ítem del carrito
     item.delete()
 
-    return render(request, 'core/cart.html')
+    return redirect(to="cart")
 
 #REGISTRO DE USUARIOS
 def register(request):
