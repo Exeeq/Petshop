@@ -2607,7 +2607,15 @@
     background-color: rgb(45, 172, 62); /* Cambia el color de fondo a tu elección */
 }
  
-
+.bonito-minimalista {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
 
 

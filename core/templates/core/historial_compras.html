@@ -6,21 +6,30 @@
 <div class="container">
     <div class="row">
         <div class="col-12 m-5">
-            <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark h1"> HISTORIAL DE COMPRAS </h1>
+            <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark h1 bonito-minimalista"> HISTORIAL DE COMPRAS </h1>
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
                         <br>
-                        <th>NÚMERO DE LA ORDEN</th>
-                        <th>PRECIO</th>
+                        <th>Número de Orden</th>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO TOTAL</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for compras in historial %}
+                    {% for orden in historial %}
                     <tr>
-                        <td>{{ compras.numero }}</td>
-                        <td></td>
-                        <td>a</td>
+                        <td class="text-uppercase">{{ orden.numero }}</td>
+                        <td class="text-uppercase">{{ orden.fecha }}</td>
+                        <td class="text-uppercase">{{ orden.carrito.usuario }}</td>
+                        <td class="text-uppercase">{{ orden.calcular_cantidad }}</td>
+                        {% if user.suscriptor %}
+                            <td class="text-uppercase">{{ orden.calcular_total_suscritor }}</td>
+                        {% else %}
+                        <td class="text-uppercase">{{ orden.calcular_total }}</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
