@@ -2,42 +2,27 @@
 {% load static %}
 {% block contenido %}
 
-<br><br><br>
-<div class="d-flex justify-content-around align-items-center align-self-center">
-    <h2 class="text-uppercase text-dark font-weight-bold">Estado del producto</h2>
-</div>
-<br>
-<div class="">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <form>
-                    <div class="container mt-3">        
-                        <table class="table table-success">
-                          <thead>
-                          </thead>
-                          <tbody>
-                          {% if orden %}
-                            <h3>NÚMERO DE ORDEN: {{ orden.numero }}</h3>
-                            <h3>NÚMERO DE ORDEN: {{ orden.estado }}</h3>
-                          {% endif %}
-                          </tbody>
-                        </table>
-                      </div>
-                    <br>
-                    <!-- Submit button -->
-                    
-                    <br>
-                    <a type="submit" href="{% url 'index' %}" class="btn btn-success ">Volver</a>
-                    
-                    <br>
-                    <br>
-                    <br>
-                
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-5">
+            <form method="POST">
+                <br>
+                <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark text-center h1 bonito-minimalista"> ¡ESTADO DE LA ORDEN! </h1>
+                <div class="card mx-auto mt-5" style="width: 40rem;">
+                    <div class="card-body text-center">
+                      <h5 class="card-title h2 bonito-minimalista">ESTADO</h5>
+                      <p class="card-text text-uppercase h5">Nombre Cliente: {{ orden.carrito }}</p>
+                      <p class="card-text text-uppercase h5">N° De orden: {{ orden.numero }}</p>
+                      <p class="card-text text-uppercase h5">ESTAOD DE LA ORDEN: {{ orden.estado }}</p>
 
+                      <br><br>
+                      <p class="footer-company mt-5 h5">Todos los derechos reservados. &copy; 2023</p>
                     </div>
-                </form>
-            </div>
+                </div>
+                <a href="{% url 'index' %}" class="btn btn-dark btn-block mt-5 w-25 mx-auto" >VOLVER AL INICIO</a>
+
+
+            </form>
         </div>
     </div>
 </div>

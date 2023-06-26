@@ -42,7 +42,7 @@ function eliminarProductoCarrito(id) {
     confirmButtonText: 'Confirmar'
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire('Eliminado!','Empleado Eliminado Correctamente','success').then(function() {
+      Swal.fire('Eliminado!','Producto Eliminado Correctamente','success').then(function() {
           window.location.href = "/eliminar_del_carrito/"+id+"/";
       })
     }

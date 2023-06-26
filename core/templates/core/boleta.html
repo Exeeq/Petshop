@@ -10,11 +10,23 @@
             <form method="POST">
                 <br>
                 <h1 class="d-flex justify-content-around align-items-center align-self-center font-weight-bold text-dark text-center h1"> ¡SU PAGO FUE COMPLETADO! </h1>
-                <br><br>
-                <h3 class="text-center font-weight-bold text-dark h4 text-uppercase">ORDEN DE:  {{ orden.carrito.usuario }}</h3>
-                <h3 class="text-center font-weight-bold text-dark h4">SU NUMERO DE ORDEN ES:  {{ orden.numero }}</h3>
-                <h3 class="text-center font-weight-bold text-dark h4">FECHA DE LA ORDEN:  {{ orden.fecha }}</h3>
-                
+                <div class="card mx-auto mt-5" style="width: 40rem;">
+                    <div class="card-body text-center">
+                      <h5 class="card-title h2 bonito-minimalista">BOLETA</h5>
+                      <p class="card-text text-uppercase h5">Nombre Cliente: {{ orden.carrito }}</p>
+                      <p class="card-text text-uppercase h5">N° De orden: {{ orden.numero }}</p>
+                      <p class="card-text text-uppercase h5">Cantidad de productos: {{ orden.calcular_cantidad }}</p>
+                      {% if user.suscriptor %}
+                        <p class="card-text text-uppercase h5">PRECIO TOTAL: $ {{ orden.calcular_total_suscritor }}</p>
+                      {% else %}
+                        <p class="card-text text-uppercase h5">PRECIO TOTAL: $ {{ orden.calcular_total }}</p>
+                      {% endif %} 
+                      <img src="{% static 'core/images/image.png' %}" alt="">
+                      <br><br>
+                      <p class="footer-company mt-5 h5">Todos los derechos reservados. &copy; 2023</p>
+                    </div>
+                </div>
+                <a href="{% url 'index' %}" class="btn btn-dark btn-block mt-5 w-25 mx-auto" >VOLVER AL INICIO</a>
 
 
             </form>

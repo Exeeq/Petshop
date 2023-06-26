@@ -184,29 +184,19 @@ def suscripcion(request):
 def historial_compras(request):
     usuario = request.user
     ordenes = Orden.objects.filter(carrito__usuario=usuario)
-    carrito = Carrito.objects.get(usuario=usuario)
-    items = carrito.itemcarrito_set.all()
-    precio_total = 0
-    precio_total_dolares = 0
-    respuesta = requests.get('https://mindicador.cl/api/')
+    items = []
 
-    
-    monedas = respuesta.json()
-    tasa_dolar = monedas['dolar']['valor']
+    for orden in ordenes:
+        carrito = orden.carrito
+        items_carrito = ItemCarrito.objects.filter(carrito=carrito)
+        for item in items_carrito:
+            ItemOrden.objects.create(orden=orden, producto=item.producto, cantidad=item.cantidad)
 
-    for item in items:
-        if usuario.suscriptor:
-            precio_total += item.precio_total_suscritor()
-            precio_total_dolares = round(precio_total / tasa_dolar, 2)
-        else:
-            precio_total += item.precio_total()
-            precio_total_dolares = round(precio_total / tasa_dolar, 2)
-    
+
     data = {
         'historial': ordenes,
-        'precio_total': precio_total,
+        'items': items,
     }
-
     return render(request, 'core/historial_compras.html', data)
 
 def boleta(request, numero_orden):
@@ -374,7 +364,12 @@ def crear_orden(request):
         # Crear la instancia de la orden
         orden = Orden.objects.create(carrito=carrito, numero=str(uuid.uuid4()))
 
+        # Obtener los items del carrito
+        items_carrito = carrito.itemcarrito_set.all()
 
+        # Crear instancias de ItemOrden y asignarlos a la orden
+        for item in items_carrito:
+            ItemOrden.objects.create(orden=orden, producto=item.producto, cantidad=item.cantidad)
 
         # Limpiar el carrito
         carrito.productos.clear()
