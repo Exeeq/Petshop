@@ -100,38 +100,38 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre Nosotros</a></li>
+                        <li class="nav-item active bonito-minimalista4"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'about' %}">Sobre Nosotros</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Tienda</a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'shop' %}">Tienda</a></li>
                         {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'contact-us' %}">Contactanos</a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'contact-us' %}">Contactanos</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'seguimiento' %}">Seguimiento</a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'seguimiento' %}">Seguimiento</a></li>
                         {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
-                        {% endif %}
-                        {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'suscripcion' %}">Suscripción</a></li>
-                        {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'suscripcion' %}">Suscripción</a></li>
                         {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'historial_compras' %}"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
                         {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'historial_compras' %}"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                        {%  else %}
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
                         {% if user.is_superuser %}
-                        <li class="nav-item "><a class="nav-link" href="{% url 'admin' %}"><i class="fa fa-user-circle text-right h3" aria-hidden="true"></i></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'admin' %}"><i class="fa fa-user-circle text-right h3" aria-hidden="true"></i></a></li>
                         {%  else %}
-                        <li class="nav-item"><a class="nav-link" href=""></a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
 
                     </ul>
