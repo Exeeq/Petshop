@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ orden.numero }}</td>
                         <td class="product-names">
-                            {% for producto in orden.productos.all %}
+                            {% for producto in ordenes.productos.all %}
                                 <p>{{ producto.nombre }}</p>
                             {% endfor %}
                         </td>

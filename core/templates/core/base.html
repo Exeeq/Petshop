@@ -75,7 +75,7 @@
                     <li class=" nav-item "><a href="{% url 'register' %}" class="fa fa-user text-light text-uppercase"> Registrar</a></li>
                     {% endif %}
                     <div class="text-slid-box">
-                        <i class="fab fa-opencart text-slid-box font-weight-bold text-success"> 5% De descuento con la suscripción!</i> 
+                        <i class="text-slid-box font-weight-bold text-success texto-personalizado3"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> 5% De descuento con la suscripción!</i> 
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                         {%  else %}
                         <li class="nav-item bonito-minimalista4"><a class="nav-link" href=""></a></li>
                         {% endif %}
-                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'contact-us' %}">Contactanos</a></li>
+                        <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'contact-us' %}">Contáctanos</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item bonito-minimalista4"><a class="nav-link" href="{% url 'seguimiento' %}">Seguimiento</a></li>
                         {%  else %}
@@ -160,7 +160,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
-							<h3>Horarios de atencion</h3>
+							<h3 class="texto-personalizado2">Horarios de atencion</h3>
 							<ul class="list-time">
 								<li>Lunes - Viernes: 08.00am A 06.00pm</li> <li>Sabado: 10.00am A 06.00pm</li> <li>Domingo: <span>Cerrado</span></li>
 							</ul>
@@ -168,7 +168,7 @@
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
-							<h3>Correos</h3>
+							<h3 class="texto-personalizado2">Correos</h3>
 							<form class="newsletter-box">
 								<div class="form-group">
 									<input class="" type="email" name="Email" placeholder="Direccion E-mail*" />
@@ -180,7 +180,7 @@
 					</div>
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
-							<h3>Redes Sociales</h3>
+							<h3 class="texto-personalizado2">Redes Sociales</h3>
 							<p>Contactanos en nuestras redes sociales, donde actualizamos todos los cambios!.</p>
 							<ul>
                                 <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
@@ -198,14 +198,14 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>Acerca de Petshop</h4>
+                            <h4 class="texto-personalizado2">Acerca de Petshop</h4>
                             <p>Somos una tienda de venta de articulos para animales, en su mayoria gatos y perros como collares, identifiacdores y cadenas.</p> 
 							<p>Gran parte de la ganancia la donamos a asosiaciones beneficas que ayuden a los animales mas necesitados. </p> 							
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
-                            <h4>Informacion</h4>
+                            <h4 class="texto-personalizado2">Informacion</h4>
                             <ul>
                                 <li><a href="{% url 'about' %}">Acerca de nosotros</a></li>
                                 <li><a href="#">Terminos &amp; Condiciones</a></li>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link-contact">
-                            <h4>Contactanos</h4>
+                            <h4 class="texto-personalizado2">Contáctanos</h4>
                             <ul>
                                 <li>
                                     <p><i class="fas fa-map-marker-alt"></i>Dirección: Calle uno <br>Santiago Chile,<br> </p>

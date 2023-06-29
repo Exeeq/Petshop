@@ -198,13 +198,12 @@ def historial_compras(request):
 def boleta(request, numero_orden):
     usuario = request.user
     orden = Orden.objects.get(numero = numero_orden)
-    carrito = Carrito.objects.get(usuario=usuario)
-    items = carrito.itemcarrito_set.all()
+    ordenes = Orden.objects.filter(carrito__usuario=usuario)
 
     data = {
          'orden': orden,
-         'carrito': carrito,
-         'items': items,
+         'ordenes': ordenes,
+
     }
 
     return render(request, 'core/boleta.html', data)
