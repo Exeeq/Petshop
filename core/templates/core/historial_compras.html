@@ -10,10 +10,11 @@
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
-                        <br>
-                        <th>Número de Orden</th>
-                        <th>Fecha</th>
-                        <th>Nombre</th>
+                        <th>N° DE ORDEN</th>
+                        <th>PRODUCTOS</th>
+                        <th>IMAGEN</th>
+                        <th>FECHA DE COMPRA</th>
+                        <th>CLIENTE</th>
                         <th>CANTIDAD</th>
                         <th>PRECIO TOTAL</th>
                     </tr>
@@ -21,14 +22,30 @@
                 <tbody>
                     {% for orden in historial %}
                     <tr>
-                        <td class="text-uppercase">{{ orden.numero }}</td>
+                        <td>{{ orden.numero }}</td>
+                        <td class="product-names">
+                            {% for producto in orden.productos.all %}
+                                <p>{{ producto.nombre }}</p>
+                            {% endfor %}
+                        </td>
+                        <td class="product-images">
+                            <div class="product-grid">
+                                {% for producto in orden.productos.all %}
+                                    <div class="product-item">
+                                        <div class="image-frame">
+                                            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="50" height="50">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </td>
                         <td class="text-uppercase">{{ orden.fecha }}</td>
                         <td class="text-uppercase">{{ orden.carrito.usuario }}</td>
-                        <td class="text-uppercase">{{ orden.calcular_cantidad }}</td>
+                        <td>{{ orden.calcular_cantidad }}</td>
                         {% if user.suscriptor %}
-                            <td class="text-uppercase">{{ orden.calcular_total_suscritor }}</td>
+                            <td>{{ orden.calcular_total_suscritor }}</td>
                         {% else %}
-                        <td class="text-uppercase">{{ orden.calcular_total }}</td>
+                            <td>{{ orden.calcular_total }}</td>
                         {% endif %}
                     </tr>
                     {% endfor %}

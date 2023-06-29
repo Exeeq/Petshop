@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="noo-sh-title-top">Somos <span>Petshop</span></h2>
+                    <h2 class="noo-sh-title-top bonito-minimalista2">Somos <span>Petshop</span></h2>
                     <p>Somos una asosiacion benefica dirigida a la venta de articulos para animales sin fin de lucro, empezamos a vender de forma Online por nuestras redes cuando nuestros clientes empezaron a crecer, por lo tanto decidimos mudarnos a un sitio web donde podras recibir la misma atencion y la misma familiaridad tan propia de nuestra tienda.!</p>
                     <p>Bienvenido a nuestra pagina de la tienda Petshop, aqui encontraras todos los articulos que necesites para tus animales.</p>
                 </div>
@@ -32,30 +32,30 @@
             <div class="row my-5">
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
-                        <h3>Somos confiables</h3>
+                        <h3 class="bonito-minimalista2">Somos confiables</h3>
                         <p>Llevamos mas de 2 años en este mercado de venta para articulos a animales a beneficio. </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
-                        <h3>Somos profesionales.</h3>
+                        <h3 class="bonito-minimalista2">Somos profesionales.</h3>
                         <p>Escucharemos todas las criticas o peticiones para poder mejorar. </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
-                        <h3>Somos expertos</h3>
+                        <h3 class="bonito-minimalista2">Somos expertos</h3>
                         <p>Gracias a nuestra experiencia en este ambito somos expertos en atencion y venta. </p>
                     </div>
                 </div>
             </div>
             {% if user.is_authenticated and user.is_superuser %}
-            <a href="{% url 'addEmpleado' %}" title="AñadirEmpleado" class="btn hvr-hover text-light text-center  fa fa-plus"> Añadir Empleado</a>
+            <a href="{% url 'addEmpleado' %}" title="AñadirEmpleado" class="btn hvr-hover text-light text-center bonito-minimalista2"> Añadir Empleado <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
             {% endif %}
             <div class="row my-4">
                 <br><br><br><br>
                 <div class="col-12">
-                    <h2 class="noo-sh-title">NUESTRO EQUIPO</h2>
+                    <h2 class="noo-sh-title bonito-minimalista2">NUESTRO EQUIPO</h2>
                 </div>
 
                 {% for aux in listado2 %}

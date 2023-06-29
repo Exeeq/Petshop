@@ -58,32 +58,37 @@ def about(request):
 
 @login_required
 def cart(request):
-    usuario = request.user
-    carrito = Carrito.objects.get(usuario=usuario)
-    items = carrito.itemcarrito_set.all()
-    precio_total = 0
-    precio_total_dolares = 0
-    respuesta = requests.get('https://mindicador.cl/api/')
+    try:
+        usuario = request.user
+        carrito = Carrito.objects.get(usuario=usuario)
+        items = carrito.itemcarrito_set.all()
+        precio_total = 0
+        precio_total_dolares = 0
+        respuesta = requests.get('https://mindicador.cl/api/')
 
-    
-    monedas = respuesta.json()
-    tasa_dolar = monedas['dolar']['valor']
+        
+        monedas = respuesta.json()
+        tasa_dolar = monedas['dolar']['valor']
 
-    for item in items:
-        if usuario.suscriptor:
-            precio_total += item.precio_total_suscritor()
-            precio_total_dolares = round(precio_total / tasa_dolar, 2)
-        else:
-            precio_total += item.precio_total()
-            precio_total_dolares = round(precio_total / tasa_dolar, 2)
+        for item in items:
+            if usuario.suscriptor:
+                precio_total += item.precio_total_suscritor()
+                precio_total_dolares = round(precio_total / tasa_dolar, 2)
+            else:
+                precio_total += item.precio_total()
+                precio_total_dolares = round(precio_total / tasa_dolar, 2)
 
-    data3 = {
-        'carrito': carrito,
-        'precio_total': precio_total,
-        'precio_total_dolares': precio_total_dolares
-    }
-    
-    return render(request, 'core/cart.html', data3)
+        data3 = {
+            'carrito': carrito,
+            'precio_total': precio_total,
+            'precio_total_dolares': precio_total_dolares
+        }
+        
+        return render(request, 'core/cart.html', data3)
+    except Carrito.DoesNotExist:        
+         messages.warning(request, 'Debes añadir un producto primero a tu carrito.')    
+         return render(request, 'core/index.html')
+
 
 @login_required
 def checkout(request):
@@ -184,18 +189,9 @@ def suscripcion(request):
 def historial_compras(request):
     usuario = request.user
     ordenes = Orden.objects.filter(carrito__usuario=usuario)
-    items = []
-
-    for orden in ordenes:
-        carrito = orden.carrito
-        items_carrito = ItemCarrito.objects.filter(carrito=carrito)
-        for item in items_carrito:
-            ItemOrden.objects.create(orden=orden, producto=item.producto, cantidad=item.cantidad)
-
 
     data = {
         'historial': ordenes,
-        'items': items,
     }
     return render(request, 'core/historial_compras.html', data)
 

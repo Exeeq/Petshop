@@ -78,7 +78,7 @@ class Orden(models.Model):
     numero = models.CharField(max_length=36, unique=True, default=uuid.uuid4)
     fecha = models.DateTimeField(auto_now_add=True)
     estado = models.ForeignKey(Seguimiento, on_delete=models.CASCADE, default=1)
-    productos = models.ManyToManyField(Producto, through='ItemOrden', null=True)
+    productos = models.ManyToManyField(Producto, through='ItemOrden')
 
     def __str__(self):
         return f"Orden #{self.numero}"
@@ -118,7 +118,7 @@ class ItemOrden(models.Model):
     cantidad = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f"{self.producto.nombre} - {self.carrito.usuario.username}"
+        return f"{self.producto.nombre} - {self.orden.carrito.usuario.username}"
 
     def precio_total(self):
         return self.cantidad * self.producto.precio
