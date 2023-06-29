@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Bienvenido a <br> Petshop</strong></h1>
+                            <h1 class="m-b-20 texto-personalizado4"><strong>Bienvenido a <br> Petshop</strong></h1>
                             <p class="m-b-40">Aqui encontraras toda nuestra pagina web <br> donde tendras articulos para animales.</p>
                             {% if user.is_authenticated %}
                             <p><a class="btn hvr-hover" href="{% url 'shop' %}">Articulos</a></p>
@@ -58,19 +58,19 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'core/images/collares.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'shop' %}">Collares</a>
+                        <a class="btn hvr-hover texto-personalizado2" href="{% url 'shop' %}">Collares</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'core/images/identificador-para-mascotas.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'shop' %}">Identificadores</a>
+                        <a class="btn hvr-hover texto-personalizado2" href="{% url 'shop' %}">Identificadores</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'core/images/correa.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'shop' %}">Correas</a>
+                        <a class="btn hvr-hover texto-personalizado2" href="{% url 'shop' %}">Correas</a>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <h1>Ultimas noticias</h1>
+                        <h1 class="texto-personalizado2">Ultimas noticias</h1>
                         <p>Aqui encontraras las ultimas noticias acerca de nuestra pagina.</p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
-                                <h3>Cambiamos el estilo!</h3>
+                                <h3 class="texto-personalizado2">Cambiamos el estilo!</h3>
                                 <p>Gracias a muchas recomendaciones de ustedes y cercanos cambiamos el estilo de nuestra pagina</p>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
-                                <h3>Re-stock de productos!</h3>
+                                <h3 class="texto-personalizado2">Re-stock de productos!</h3>
                                 <p>Nos llego nuevos y antiguos productos, tenemos Re-stock de gran mayoria de productos</p>
                             </div>
 
@@ -124,7 +124,7 @@
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
-                                <h3>Agregamos pagina de seguimiento!</h3>
+                                <h3 class="texto-personalizado2">Agregamos pagina de seguimiento!</h3>
                                 <p>Gracias a la colaboracion de nuestros desarrolladores agregamos una pagina para el seguimiento de sus productos!</p>
                             </div>
                         </div>

@@ -48,7 +48,7 @@
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
-                                                        <p class="sale">EN VENTA</p>
+                                                        <p class="sale texto-personalizado2">EN VENTA</p>
                                                     </div>
                                                     {% if aux.imagen %}
                                                     <img class="img-fluid" src="{{ aux.imagen.url }}">
@@ -63,23 +63,23 @@
                                                             {% endif %}
                                                         </ul>
                                                         {% if aux.stock >= 1 %}
-                                                            <a class="cart"  href="{% url 'agregar_al_carrito' aux.id %}">Agregar al carrito</a>
+                                                            <a class="cart texto-personalizado3"  href="{% url 'agregar_al_carrito' aux.id %}">Agregar al carrito</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
                                                 <div class="why-text d-flex justify-content-between flex-column ">
-                                                    <h4 class="text-dark text-center"> {{ aux.nombre }}</h4>
+                                                    <h4 class="text-dark text-center texto-personalizado"> {{ aux.nombre }}</h4>
                                                     {% if aux.stock <= 0 %}
-                                                    <h4 class="text-danger text-center">  ¡PRODUCTO SIN STOCK! </h4>
+                                                    <h4 class="text-danger text-center texto-personalizado">  ¡PRODUCTO SIN STOCK! </h4>
                                                     {% else %}
-                                                    <h4 class="text-dark text-center"> STOCK: {{ aux.stock }}</h4>
+                                                    <h4 class="text-dark text-center texto-personalizado"> STOCK: {{ aux.stock }}</h4>
                                                     {% endif %}
-                                                    <h3 class="text-dark text-center">{{ aux.descripcion }}</h3>
+                                                    <h3 class="text-muted text-center texto-personalizado2">{{ aux.descripcion }}</h3>
                                                     {% if user.suscriptor %}
-                                                    <h5 class="text-center"> ${{ aux.calcularDescuento }} </h5>
-                                                    <span class="text-muted font-italic text-center">$ {{ aux.precio }}</span>
+                                                    <h5 class="text-cente texto-personalizado"> ${{ aux.calcularDescuento }} </h5>
+                                                    <span class="text-muted font-italic text-center texto-personalizado">$ {{ aux.precio }}</span>
                                                     {% else %}
-                                                    <h5 class="text-center">${{ aux.precio }}</h5>
+                                                    <h5 class="text-center texto-personalizado">${{ aux.precio }}</h5>
                                                     {% endif %}
                                                 </div>
                                             </div>
