@@ -19,8 +19,9 @@
                       {% for producto in orden.productos.all %}
                           <p class="card-text text-uppercase h5">PRODUCTO:</p>
                           <p class="card-text text-uppercase h5">{{ producto.nombre }}</p>
-                          
+                          <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="50" height="50">
                       {% endfor %}
+                      
                       <br>
                       <p class="card-text text-uppercase h5">Cantidad de productos: {{ orden.calcular_cantidad }}</p>
                       <br>

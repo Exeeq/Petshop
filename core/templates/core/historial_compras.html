@@ -12,7 +12,6 @@
                     <tr>
                         <th>N° DE ORDEN</th>
                         <th>PRODUCTOS</th>
-                        <th>IMAGEN</th>
                         <th>FECHA DE COMPRA</th>
                         <th>CLIENTE</th>
                         <th>CANTIDAD</th>
@@ -23,11 +22,6 @@
                     {% for orden in historial %}
                     <tr>
                         <td>{{ orden.numero }}</td>
-                        <td class="product-names">
-                            {% for producto in ordenes.productos.all %}
-                                <p>{{ producto.nombre }}</p>
-                            {% endfor %}
-                        </td>
                         <td class="product-images">
                             <div class="product-grid">
                                 {% for producto in orden.productos.all %}
