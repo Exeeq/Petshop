@@ -53,5 +53,8 @@ ESTADOS_ORDEN = [
 class EstadoOrden(forms.Form):
     estado = forms.ChoiceField(label='Estado', choices=ESTADOS_ORDEN)
 
+class SuscripcionForm(forms.Form):
+    monto = forms.IntegerField(min_value=5,widget=forms.NumberInput(attrs={"placeholder":"Ingrese monto"}))   
+
 
 

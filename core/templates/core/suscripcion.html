@@ -1,37 +1,37 @@
-{% extends 'core/base.html' %} 
-{% load static %} 
-{% load crispy_forms_tags %} 
-
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 <div class="container">
     <div class="row">
         <div class="col-12 m-5">
+            <form method="post">
+                {% csrf_token %}
                 <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1 bonito-minimalista"> SUSCRIPCIÓN </h1>
-				<br>
-				<p class="text-center font-weight-bold text-dark bonito-minimalista2 ">
-					Si te suscribes apoyarás a una fundación sin fines de lucro, ¡además recibiras un descuento de un 5% en todos
-					los productos para mascotas de la tienda!, todo eso por solo una donación a la tienda a voluntad.
-				</p>
-				<br>
-				{% if user.suscriptor %}
-				<a  onclick="eliminarSuscripcion(); return false;" type="submit" class="btn btn-primary btn-block text-light bonito-minimalista" value="DESUSCRIBIRME">DESUSCRIBIRME</a>
-				{% else %}
-				<div class="text-center">
-					$  <input class="text-center" type="number" name="monto" id="montoInput" placeholder="Ingrese el monto" min="0">
-				</div>
-				<br>
-				<div class="text-center">
-					<div id="btnPaypal"></div>
-				</div>
-				{% endif %}
-				<br><br><br><br><br>
+                <br>
+                <p class="text-center font-weight-bold text-dark bonito-minimalista2">
+                    Si te suscribes apoyarás a una fundación sin fines de lucro, ¡además recibirás un descuento de un 5% en todos
+                    los productos para mascotas de la tienda!, todo eso por solo una donación a la tienda a voluntad.
+                </p>
+                <br>
+                {% if user.suscriptor %}
+                <a onclick="eliminarSuscripcion(); return false;" type="submit" class="btn btn-primary btn-block text-light bonito-minimalista" value="DESUSCRIBIRME">DESUSCRIBIRME</a>
+                {% else %}
+                <div class="text-center">
+                    {{ form|crispy }}
+					<p class="text-danger text-bold h5">*Luego de ingresar un monto debe apretar la tecla ENTER para que se registre su monto y seguido puede darle a pagar con Paypal!</p>
+                </div>
+                <br>
+                <div class="text-center">
+                    <div id="btnPaypal"></div>
+                </div>
+                {% endif %}
+                <br><br><br><br><br>
+            </form>
         </div>
     </div>
 </div>
-
-     
-
 {% endblock %}
 
 {% block js %}
@@ -39,72 +39,68 @@
 <script src="{% static 'core/js/mensajes.js' %}"></script>
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script>
-	paypal.Button.render({
-		env: 'sandbox',
-		client: {
-			sandbox: 'AUdczilLjDrMGcZtY3F9Xqa4WAmOmJQki8I3sWy9rTnnuxmiPWNOW1RACinASsIaWMDt8QPAbg0JQ1EL',
-			production: 'demo_production_client_id'
-		},
-		locale: 'es_CL',
-		style: {
-			size: 'large',
-			color: 'black',
-			shape: 'pill'
-		},
-		commit: true,
-		payment: function(data, actions) {
-			var monto = document.getElementById('montoInput').value;
-			return actions.payment.create({
-				transactions: [{
-					amount: {
-						total: monto,
-						currency: 'USD'
-					}
-				}]
-			});
-		},
-		onAuthorize: function (data, actions) {
-			return actions.payment.execute().then(function () {
-				// LA LOGICA DE LO QUE PASA LUEGO DEL PAGO
-				Swal.fire({
-					title: 'Confirmación',
-					text: 'Pago realizado correctamente!, Ahora eres Suscriptor.',
-					icon: 'success',
-					showCancelButton: false,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Confirmar'
-				}).then((result) => {
-					if (result.isConfirmed) {
-						// Realizar una solicitud AJAX al servidor para actualizar el campo "suscritor"
-						var xhr = new XMLHttpRequest();
-						xhr.open('GET', '/actualizar_suscriptor/', true);  // Reemplaza la URL con la ruta correcta
-						xhr.setRequestHeader('Content-Type', 'application/json');
-						xhr.onload = function () {
-							if (xhr.status === 200) {
-								console.log(xhr.responseText);
-							}
-						};
-						xhr.send();
-					}
-				});
-			});
-		},
-		onCancel(data) {
-			Swal.fire({
-					title: 'Cancelado',
-					text: 'Transacción cancelada!',
-					icon: 'error',
-					showCancelButton: false,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					confirmButtonText: 'Confirmar'
-				})
-		},
-
-
-	}, '#btnPaypal');
-
+    paypal.Button.render({
+        env: 'sandbox',
+        client: {
+            sandbox: 'AUdczilLjDrMGcZtY3F9Xqa4WAmOmJQki8I3sWy9rTnnuxmiPWNOW1RACinASsIaWMDt8QPAbg0JQ1EL',
+            production: 'demo_production_client_id'
+        },
+        locale: 'es_CL',
+        style: {
+            size: 'large',
+            color: 'black',
+            shape: 'pill'
+        },
+        commit: true,
+        payment: function(data, actions) {
+            var monto = parseFloat('{{ monto_dolares }}');
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: monto.toFixed(2),
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                // LA LÓGICA DE LO QUE PASA LUEGO DEL PAGO
+                Swal.fire({
+                    title: 'Confirmación',
+                    text: 'Pago realizado correctamente! Ahora eres Suscriptor.',
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Realizar una solicitud AJAX al servidor para actualizar el campo "suscriptor"
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', '/actualizar_suscriptor/', true);  // Reemplaza la URL con la ruta correcta
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                console.log(xhr.responseText);
+                            }
+                        };
+                        xhr.send();
+                    }
+                });
+            });
+        },
+        onCancel: function (data) {
+            Swal.fire({
+                title: 'Cancelado',
+                text: 'Transacción cancelada!',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar'
+            });
+        }
+    }, '#btnPaypal');
 </script>
-    
 {% endblock %}

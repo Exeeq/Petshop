@@ -183,7 +183,35 @@ def mapa(request, numero_orden):
 
 @login_required
 def suscripcion(request):
-    return render(request, 'core/suscripcion.html')
+    form = SuscripcionForm()
+
+    if request.method == 'POST':
+        form = SuscripcionForm(request.POST)
+        if form.is_valid():
+            monto = form.cleaned_data['monto']
+
+            # Obtener la tasa de cambio del dólar desde la API de MiIndicador
+            respuesta = requests.get('https://mindicador.cl/api/')
+            monedas = respuesta.json()
+            tasa_dolar = monedas['dolar']['valor']
+
+            # Calcular el monto en dólares
+            monto_dolares = monto / tasa_dolar
+
+            # Resto de tu lógica
+            # ...
+            data = {
+                'form': form,
+                'monto': monto,
+                'monto_dolares': monto_dolares,
+                # Resto de los datos que deseas pasar al template
+            }
+            return render(request, 'core/suscripcion.html', data)
+
+    data = {
+        'form': form
+    }
+    return render(request, 'core/suscripcion.html', data)
 
 @login_required
 def historial_compras(request):
