@@ -34,9 +34,10 @@
         <div class="container ">
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-center mx-auto">
-                    <div class="right-product-box">
+                    <div class="right-product-box text-center">
                         {% if user.is_authenticated and user.is_superuser %}
                         <a href="{% url 'add' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto bonito-minimalista3"> Añadir producto <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                        <a href="{% url 'addTipoProducto' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto bonito-minimalista3"> Añadir nuevo tipo de producto <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                         {% endif %}
                         <br><br><br>
                         <div class="product-categorie-box">
@@ -77,7 +78,7 @@
                                                     <h3 class="text-muted text-center texto-personalizado2">{{ aux.descripcion }}</h3>
                                                     {% if user.suscriptor %}
                                                     <h5 class="text-cente texto-personalizado"> ${{ aux.calcularDescuento }} </h5>
-                                                    <span class="text-muted font-italic text-center texto-personalizado">$ {{ aux.precio }}</span>
+                                                    <strike class="text-muted text-center h5">PRECIO ANTERIOR: ${{ aux.precio }}</strike>
                                                     {% else %}
                                                     <h5 class="text-center texto-personalizado">${{ aux.precio }}</h5>
                                                     {% endif %}

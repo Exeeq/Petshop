@@ -7,13 +7,15 @@
         <div class="col-12 m-5">
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1 bonito-minimalista"> AÑADIR EMPLEADO </h1>
+                <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1 bonito-minimalista"> AÑADIR TIPO DE PRODUCTO </h1>
                 <br><br><br>
                 <table>
                     {{ form | crispy }}
                 </table>
-               
-                <input type="submit" class="btn btn-success" value="Guardar">
+                <div class="text-center">
+                    <br><br><br>
+                    <input type="submit" class="btn btn-primary bonito-minimalista3 text-light" value="Guardar">
+                </div>
             </form>
     <br><br><br>
     
@@ -28,7 +30,7 @@
     {% for aux in messages %} 
     <script>
       Swal.fire({
-      title: 'Empleado añadido!',
+      title: '¡Tipo de Producto añadido con éxito!',
       text: '{{ aux }}',
       icon: 'success',
       showConfirmButton: false,
@@ -36,7 +38,7 @@
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       html:
-        '<a href="/about/" class="btn btn-primary" id="redirectButton">Confirmar</a>',
+        '<a href="/shop/" class="btn btn-primary" id="redirectButton">Confirmar</a>',
       didOpen: () => {
         const redirectButton = document.getElementById("redirectButton");
         redirectButton.addEventListener("click", redirectToPage);

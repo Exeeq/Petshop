@@ -11,6 +11,8 @@
     <div class="col-12 m-5">
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <h1 class="d-flex justify-content-center align-items-center font-weight-bold text-dark h1 bonito-minimalista"> ACTUALIZAR EMPLEADO </h1>
+        <br><br><br>
         <table>
           {{ form | crispy }}
         </table>
