@@ -97,7 +97,8 @@ def checkout(request):
 def contact_us(request):
 	return render(request, 'core/contact-us.html')
 
-@login_required
+@grupo_requerido('administradores')
+@grupo_requerido('vendedor')
 def admin(request):
     ordenes = Orden.objects.all()
     form = EstadoOrden()
@@ -118,7 +119,7 @@ def admin(request):
 
     return render(request, 'core/admin_vista.html', data)
 
-@login_required
+@grupo_requerido('vendedor')
 def shop(request):
     productos = Producto.objects.all()
 
@@ -134,6 +135,7 @@ def shop(request):
 
     return render(request, 'core/shop.html', data)
 
+@grupo_requerido('administradores')
 def shopapi(request):
     respuesta = requests.get('http://127.0.0.1:8000/api/productos/')
     respuesta2 = requests.get('https://mindicador.cl/api/')
