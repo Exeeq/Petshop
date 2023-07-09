@@ -54,6 +54,9 @@ urlpatterns = [
     path('crear_orden/', crear_orden, name='crear_orden'),
     path('boleta/<numero_orden>', boleta, name='boleta'),
     path('cambiar_estado/<str:numero_orden>/', cambiar_estado, name='cambiar_estado'),
+
+    #CRUD TIPO PRODUCTO
+    path('add_tipoproducto/', addTipoProducto, name="addTipoProducto"),
     
 
 ]	

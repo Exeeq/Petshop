@@ -14,16 +14,17 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import uuid
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import Group
 
 
 # FUNCIÓN GENERICA QUE VALIDA EL GRUPO
-def grupo_requerido(nombre_grupo):
-     def decorator(view_func):
-          @user_passes_test(lambda user: user.groups.filter(name=nombre_grupo).exists())
-          def wrapper(requests, *args, **kwargs):
-               return view_func(requests, *args, **kwargs)
-          return wrapper
-     return decorator
+def group_required(*group_names):
+    def decorator(view_func):
+        @user_passes_test(lambda user: user.groups.filter(name__in=group_names).exists())
+        def wrapper(request, *args, **kwargs):
+            return view_func(request, *args, **kwargs)
+        return wrapper
+    return decorator
 
 # CREANDO UNA CLASE QUE VA A PERMITIR LA TRANSFORMACIÓN
 class ProductoViewset(viewsets.ModelViewSet):
@@ -97,8 +98,7 @@ def checkout(request):
 def contact_us(request):
 	return render(request, 'core/contact-us.html')
 
-@grupo_requerido('administradores')
-@grupo_requerido('vendedor')
+@group_required('vendedor', 'administradores')
 def admin(request):
     ordenes = Orden.objects.all()
     form = EstadoOrden()
@@ -119,7 +119,7 @@ def admin(request):
 
     return render(request, 'core/admin_vista.html', data)
 
-@grupo_requerido('vendedor')
+@group_required('cliente', 'vendedor', 'administradores')
 def shop(request):
     productos = Producto.objects.all()
 
@@ -135,7 +135,7 @@ def shop(request):
 
     return render(request, 'core/shop.html', data)
 
-@grupo_requerido('administradores')
+@group_required('vendedor', 'administradores')
 def shopapi(request):
     respuesta = requests.get('http://127.0.0.1:8000/api/productos/')
     respuesta2 = requests.get('https://mindicador.cl/api/')
@@ -375,8 +375,14 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-             form.save()
-             return redirect("index")
+            user = form.save()
+
+            # Asignar al grupo "usuario"
+            grupo_usuario = Group.objects.get(name='cliente')
+            user.groups.add(grupo_usuario)
+
+            return redirect("index")
+
     return render(request, 'registration/register.html', { 'form': form })
 
 #ORDEN DE COMPRA
@@ -422,3 +428,17 @@ def cambiar_estado(request, numero_orden):
 
     return render(request, 'core/admin_vista.html', data)
 
+#Tipo Producto CRUD
+def addTipoProducto(request):
+    data = {
+        'form' : TipoProductoForm()
+    }
+
+    if request.method == 'POST':
+        formulario = TipoProductoForm(request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save() 
+            data['msj'] = "Producto almacenado correctamente"
+            messages.success(request, "Producto almacenado correctamente")
+
+    return render(request, 'core/add_tipoproducto.html', data)

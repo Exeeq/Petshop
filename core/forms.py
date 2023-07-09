@@ -20,6 +20,15 @@ class ProductoForm(ModelForm):
             'vencimiento' : forms.SelectDateWidget(years=range(2023,2061))
         }
 
+class TipoProductoForm(ModelForm):
+    descripcion = forms.CharField(min_length=4,widget=forms.TextInput(attrs={"placeholder":"Ingrese nuevo tipo"}))
+
+    class Meta:
+        model = TipoProducto
+        fields = '__all__'
+
+        
+
 class EmpleadoForm(ModelForm):
     nombre_empleado = forms.CharField(min_length=4,widget=forms.TextInput(attrs={"placeholder":"Ingrese Nombre"}))
     cargo = forms.CharField(min_length=4,widget=forms.TextInput(attrs={"placeholder":"Ingrese cargo"}))
