@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2023 a las 04:15:59
+-- Tiempo de generación: 09-07-2023 a las 03:03:51
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -35,6 +35,15 @@ CREATE TABLE `auth_group` (
   `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `auth_group`
+--
+
+INSERT INTO `auth_group` (`id`, `name`) VALUES
+(3, 'administradores'),
+(2, 'cliente'),
+(1, 'vendedor');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +56,102 @@ CREATE TABLE `auth_group_permissions` (
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `auth_group_permissions`
+--
+
+INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
+(1, 1, 17),
+(2, 1, 18),
+(3, 1, 19),
+(4, 1, 20),
+(5, 1, 25),
+(6, 1, 26),
+(7, 1, 27),
+(8, 1, 28),
+(9, 1, 30),
+(10, 1, 31),
+(11, 1, 32),
+(12, 1, 33),
+(13, 1, 34),
+(14, 1, 35),
+(15, 1, 36),
+(16, 1, 37),
+(17, 1, 38),
+(18, 1, 39),
+(19, 1, 40),
+(20, 1, 44),
+(21, 1, 49),
+(22, 1, 50),
+(23, 1, 51),
+(24, 1, 52),
+(30, 2, 20),
+(32, 2, 24),
+(34, 2, 28),
+(25, 2, 32),
+(26, 2, 36),
+(27, 2, 40),
+(28, 2, 44),
+(29, 2, 48),
+(31, 2, 52),
+(33, 2, 56),
+(35, 3, 1),
+(36, 3, 2),
+(37, 3, 3),
+(38, 3, 4),
+(39, 3, 5),
+(40, 3, 6),
+(41, 3, 7),
+(42, 3, 8),
+(43, 3, 9),
+(44, 3, 10),
+(45, 3, 11),
+(46, 3, 12),
+(47, 3, 13),
+(48, 3, 14),
+(49, 3, 15),
+(50, 3, 16),
+(51, 3, 17),
+(52, 3, 18),
+(53, 3, 19),
+(54, 3, 20),
+(55, 3, 21),
+(56, 3, 22),
+(57, 3, 23),
+(58, 3, 24),
+(59, 3, 25),
+(60, 3, 26),
+(61, 3, 27),
+(62, 3, 28),
+(63, 3, 29),
+(64, 3, 30),
+(65, 3, 31),
+(66, 3, 32),
+(67, 3, 33),
+(68, 3, 34),
+(69, 3, 35),
+(70, 3, 36),
+(71, 3, 37),
+(72, 3, 38),
+(73, 3, 39),
+(74, 3, 40),
+(75, 3, 41),
+(76, 3, 42),
+(77, 3, 43),
+(78, 3, 44),
+(79, 3, 45),
+(80, 3, 46),
+(81, 3, 47),
+(82, 3, 48),
+(83, 3, 49),
+(84, 3, 50),
+(85, 3, 51),
+(86, 3, 52),
+(87, 3, 53),
+(88, 3, 54),
+(89, 3, 55),
+(90, 3, 56);
 
 -- --------------------------------------------------------
 
@@ -353,7 +458,16 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (14, '2023-06-26 00:00:40.449941', '6', 'Orden #d43ea756-391e-46bf-97ec-b255188dc093', 3, '', 11, 1),
 (15, '2023-06-26 00:00:40.450942', '5', 'Orden #32548a01-da14-446d-83e4-27a26f7c0dce', 3, '', 11, 1),
 (16, '2023-06-26 00:10:04.692111', '7', 'Orden #3b45120b-5d6f-420e-99c0-dfaf2d3a327d', 3, '', 11, 1),
-(17, '2023-06-26 02:05:38.375418', '16', 'IDENTIFICADOR PARA MASCOTAS DE PLATINO - admin', 3, '', 12, 1);
+(17, '2023-06-26 02:05:38.375418', '16', 'IDENTIFICADOR PARA MASCOTAS DE PLATINO - admin', 3, '', 12, 1),
+(18, '2023-07-09 00:38:34.054931', '1', 'Vendedor', 1, '[{\"added\": {}}]', 3, 1),
+(19, '2023-07-09 00:39:53.453904', '2', 'Cliente', 1, '[{\"added\": {}}]', 3, 1),
+(20, '2023-07-09 00:40:40.898931', '3', 'Administradores', 1, '[{\"added\": {}}]', 3, 1),
+(21, '2023-07-09 00:40:48.464709', '3', 'administradores', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 3, 1),
+(22, '2023-07-09 00:40:53.067179', '2', 'cliente', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 3, 1),
+(23, '2023-07-09 00:40:57.493736', '1', 'vendedor', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 3, 1),
+(24, '2023-07-09 00:41:52.574859', '1', 'admin', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 13, 1),
+(25, '2023-07-09 00:41:57.121770', '2', 'juan', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 13, 1),
+(26, '2023-07-09 00:42:05.928675', '3', 'Exequiel', 2, '[{\"changed\": {\"fields\": [\"Groups\"]}}]', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -453,6 +567,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('d2jlibdbi6gdzty35s5t96xhcqpba4a3', '.eJxVjMsOwiAQRf-FtSHlMYAu3fcbyDCMUjWQlHZl_HfbpAvd3nPOfYuI61Li2nmOUxYXocTpd0tIT647yA-s9yap1WWektwVedAux5b5dT3cv4OCvWy1JasYiRhsPgNbh2HQROgBCIwjtl5pCsTeocpBGcO0KcPNoFYQkvh8AfdDOCA:1qIIlv:LSbvIimSEnbmspJHMz7SUbe6nU6whyhJvRBEGN0_IFA', '2023-07-23 00:59:31.283052'),
 ('l4sy2rdsun9d1g3o6lt6czxdlhqbt3wj', '.eJxVjMsOwiAQRf-FtSHlMYAu3fcbyDCMUjWQlHZl_HfbpAvd3nPOfYuI61Li2nmOUxYXocTpd0tIT647yA-s9yap1WWektwVedAux5b5dT3cv4OCvWy1JasYiRhsPgNbh2HQROgBCIwjtl5pCsTeocpBGcO0KcPNoFYQkvh8AfdDOCA:1qDbUx:MJeeBjSsyxJbFNAEA4Et95hOUtP7R_BQ423Nl_1Xr8k', '2023-07-10 01:58:35.391283');
 
 -- --------------------------------------------------------
@@ -482,9 +597,9 @@ CREATE TABLE `usuario_usuariocustom` (
 --
 
 INSERT INTO `usuario_usuariocustom` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `suscriptor`) VALUES
-(1, 'pbkdf2_sha256$216000$OusIqdo2MjB7$OjTHQNVe7MlvclrBh8f1FaisiR/lKHEpohkZXkPWEVU=', '2023-06-26 01:58:35.389780', 1, 'admin', '', '', 'admin@admin.cl', 1, 1, '2023-06-25 19:03:54.000000', 0),
-(2, 'pbkdf2_sha256$216000$Po6FAc7aY371$neI+eQam2MsE4+KbF0RoSZWqcvcgjDuMf75JtEy2fDE=', '2023-06-26 01:05:12.080550', 0, 'juan', '', '', 'juan@trigo.com', 0, 1, '2023-06-26 00:22:19.883272', 1),
-(3, 'pbkdf2_sha256$216000$gNZNe3Zb44hP$N45f/5cWPlW+NS+4gY2TovDrWIQczQaVtXBlXbCtFAY=', '2023-06-26 01:03:38.273343', 0, 'Exequiel', '', '', 'exe1@gmail.com', 0, 1, '2023-06-26 01:03:29.925203', 0);
+(1, 'pbkdf2_sha256$216000$OusIqdo2MjB7$OjTHQNVe7MlvclrBh8f1FaisiR/lKHEpohkZXkPWEVU=', '2023-07-09 00:59:31.277068', 1, 'admin', '', '', 'admin@admin.cl', 1, 1, '2023-06-25 19:03:54.000000', 0),
+(2, 'pbkdf2_sha256$216000$Po6FAc7aY371$neI+eQam2MsE4+KbF0RoSZWqcvcgjDuMf75JtEy2fDE=', '2023-07-09 00:58:12.581207', 0, 'juan', '', '', 'juan@trigo.com', 0, 1, '2023-06-26 00:22:19.000000', 1),
+(3, 'pbkdf2_sha256$216000$gNZNe3Zb44hP$N45f/5cWPlW+NS+4gY2TovDrWIQczQaVtXBlXbCtFAY=', '2023-07-09 00:58:32.532140', 0, 'Exequiel', '', '', 'exe1@gmail.com', 0, 1, '2023-06-26 01:03:29.000000', 0);
 
 -- --------------------------------------------------------
 
@@ -498,6 +613,17 @@ CREATE TABLE `usuario_usuariocustom_groups` (
   `usuariocustom_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario_usuariocustom_groups`
+--
+
+INSERT INTO `usuario_usuariocustom_groups` (`id`, `usuariocustom_id`, `group_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 2),
+(5, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -654,13 +780,13 @@ ALTER TABLE `usuario_usuariocustom_user_permissions`
 -- AUTO_INCREMENT de la tabla `auth_group`
 --
 ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_permission`
@@ -720,7 +846,7 @@ ALTER TABLE `core_tipoproducto`
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `django_content_type`
@@ -744,7 +870,7 @@ ALTER TABLE `usuario_usuariocustom`
 -- AUTO_INCREMENT de la tabla `usuario_usuariocustom_groups`
 --
 ALTER TABLE `usuario_usuariocustom_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_usuariocustom_user_permissions`
