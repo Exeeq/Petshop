@@ -20,9 +20,12 @@
                 {% else %}
                 <div class="text-center">
                     {{ form|crispy }}
-					<p class="text-danger text-bold h5">*Luego de ingresar un monto debe apretar la tecla ENTER para que se registre su monto y seguido puede darle a pagar con Paypal!</p>
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-primary btn-block bonito-minimalista h5 text-light btn-sm">Ingresar Monto</button>
+                    </div>
+                    <p class="text-danger text-bold h5">*¡Luego de ingresar un monto, haz clic en el botón "Ingresar Monto" para que se registre tu monto y luego podrás pagar con PayPal!.</p>
                 </div>
-                <br>
+                <br><br>
                 <div class="text-center">
                     <div id="btnPaypal"></div>
                 </div>

@@ -2730,3 +2730,66 @@
     letter-spacing: 1px;
 }
 
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilos para el botón desplegable */
+  .btn-link {
+    text-decoration: none;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos para la sección del historial */
+  .container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  .card-header {
+    background-color: #f2f2f2;
+    border: none;
+  }
+  
+  .card-body {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+  
+  .font-weight-bold {
+    font-weight: bold;
+  }
+  
+  .h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
