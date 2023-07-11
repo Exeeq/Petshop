@@ -10,7 +10,8 @@
                     <h2>Tienda</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Tienda</li>       
+                        <li class="breadcrumb-item active">Tienda</li>
+                        
                     </ul>
                 </div>
             </div>
@@ -22,7 +23,7 @@
     <div class="container ">
         <div class="row">
             <div class="col-sm-12 ">
-                <h1 class="d-flex justify-content-around align-items-center align-self-center text-uppercase text-dark font-weight-bold bonito-minimalista">TIENDA DE PRODUCTOS</h1>
+                <h1 class="d-flex justify-content-around align-items-center align-self-center text-uppercase text-dark font-weight-bold ">TIENDA DE PRODUCTOS API</h1>
             </div>
         </div>
     </div>
@@ -33,12 +34,10 @@
         <div class="container ">
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-center mx-auto">
-                    <div class="right-product-box text-center">
+                    <div class="right-product-box">
                         {% if user.is_authenticated and user.is_superuser %}
-                        <a href="{% url 'add' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto bonito-minimalista3"> Añadir producto <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                        <a href="{% url 'addTipoProducto' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto bonito-minimalista3"> Añadir nuevo tipo de producto <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                        <br><br>
-                        <a href="{% url 'shopapi' %}" title="" class="btn hvr-hover text-light text-center mx-auto bonito-minimalista3"> SHOP API</a>
+                        <a href="{% url 'add' %}" title="Añadir" class="btn hvr-hover text-light text-center mx-auto"> Añadir producto +</a>
+                        <p> DOLAR: {{ moneda.dolar.valor }}</p>
                         {% endif %}
                         <br><br><br>
                         <div class="product-categorie-box">
@@ -50,39 +49,35 @@
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
-                                                        <p class="sale texto-personalizado2">EN VENTA</p>
+                                                        <p class="sale">EN VENTA</p>
                                                     </div>
                                                     {% if aux.imagen %}
-                                                    <img class="img-fluid" src="{{ aux.imagen.url }}">
+                                                    <img class="img-fluid" src="{{ aux.imagen }}">
                                                     {% else %}
                                                     <img class="img-fluid" src="{% static 'core/images/danger.png' %}" >
                                                     {% endif %}
                                                     <div class="mask-icon">
                                                         <ul>
                                                             {% if user.is_authenticated and user.is_superuser %}
-                                                            <li><a onclick="eliminarProducto({{ aux.id }}); return false;" href="" data-toggle="tooltip" data-placement="right" title="Eliminar"><i class="fa fa-trash"></i></a></li>
+                                                            <li><a href="{% url 'delete' aux.id %}"><i class="fa fa-trash"></i></a></li>
                                                             <li><a href="{% url 'update' aux.id %}" data-toggle="tooltip" data-placement="right" title="Actualizar" class="fas fa-sync-alt"></a></li>
                                                             {% endif %}
+
                                                         </ul>
                                                         {% if aux.stock >= 1 %}
-                                                            <a class="cart texto-personalizado3"  href="{% url 'agregar_al_carrito' aux.id %}">Agregar al carrito</a>
+                                                        <a class="cart" href="{% url 'cart' %}">AÑADIR AL CARRITO</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
-                                                <div class="why-text d-flex justify-content-between flex-column ">
-                                                    <h4 class="text-dark text-center texto-personalizado"> {{ aux.nombre }}</h4>
+                                                <div class="why-text">
+                                                    <h4 class="text-dark text-center"> {{ aux.nombre }}</h4>
                                                     {% if aux.stock <= 0 %}
-                                                    <h4 class="text-danger text-center texto-personalizado">  ¡PRODUCTO SIN STOCK! </h4>
+                                                    <h4 class="text-danger text-center">  ¡PRODUCTO SIN STOCK! </h4>
                                                     {% else %}
-                                                    <h4 class="text-dark text-center texto-personalizado"> STOCK: {{ aux.stock }}</h4>
+                                                    <h4 class="text-dark text-center"> STOCK: {{ aux.stock }}</h4>
                                                     {% endif %}
-                                                    <h3 class="text-muted text-center texto-personalizado2">{{ aux.descripcion }}</h3>
-                                                    {% if user.suscriptor %}
-                                                    <h5 class="text-cente texto-personalizado"> ${{ aux.calcularDescuento }} </h5>
-                                                    <strike class="text-muted text-center h5">PRECIO ANTERIOR: ${{ aux.precio }}</strike>
-                                                    {% else %}
-                                                    <h5 class="text-center texto-personalizado">${{ aux.precio }}</h5>
-                                                    {% endif %}
+                                                    <h3 class="text-dark d-flex text-center">{{ aux.descripcion }}</h3>
+                                                    <h5> ${{ aux.precio }} </h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +85,12 @@
                                         
                                     </div>
                                     
+                                    <br><br><br><br><br><br>
                                     {% include 'core/paginator.html' %}
+                                    {% for aux in personajes %}
+                                        <p>Nombre: {{ aux.name }} - Raza: {{ aux.species }}</p>
+                                        <img src="{{ aux.image }}" alt="">
+                                    {% endfor %}
                                 </div>
 
                             </div>
@@ -112,8 +112,7 @@
 {% endblock %}
 
 {% block js %}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{% static 'core/js/mensajes.js' %}"></script>
-
+</script>
 {% endblock %}  
 
